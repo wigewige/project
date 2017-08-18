@@ -1,0 +1,212 @@
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+
+
+总结最后增加和修改的地方，详细可以跟原来的svn对比
+
+
+【修改】
+代码中 arp.c中wifi 检测到wifi connect到后，运行iwtest
+wifi_conn.connStatus == 1
+
+注释掉与iwtest冲突的信号强度检测线程，Thread_wifi_signal_level
+注释掉没影响，原来这个线程也只是打印出扫描到哪些信号的信息，以及获取当前连接的网络的信号强度而已，没有在哪里实际使用或实现什么功能，原来本要实现的功能也注释掉了。所以，注释掉这个线程没影响
+
+
+替换了8188 ko，新增了iwtest，
+Z:\develop\wifi\mls\rootfs_hi3518ev200\Compress\WIFI_LIB\8188
+
+脚本auto.sh中增加cp 8188eu.ko和iwtest
+
+注释掉了几处线程频繁打印“value:255” "Thread_rs485Data_Read"，Thread_rs485Data_Read，Thread_Power_Resource_Management，
+
+
+因编译16M时编译不通过，缺少对于函数库，而矿灯应用中用不着XSERVER
+hank_sys.h中
+#define XSERVER 0 // 1 //wigewige modify
+并且auto.sh脚本中注释16M时自动开启XSERVER
+elif [ "${APP_XSERVER}" = "0" -a "${FLASH_SIZE}" = "16" -a  "${ARCH_TYPE}" != "ARCH_GOKE" ];then
+	echo compile with xserver !
+#	sed -i 's/XSERVER[ ]*0/XSERVER 1/g' ${SVN_PATH}/APP/include/hank_sys.h
+
+
+
+更新了下版本日期
+
+
+
+wlan0
+因新驱动命名wlan0，将程序中8188网卡名称ra0改为wlan0
+hankpublic.h
+
+
+
+udhcpd.conf
+udhcpd.conf中ra0也改为wlan0
+udhcpd.conf在Z:\develop\wifi\mls\rootfs_hi3518ev200\Compress\Server\etc
+参考脚本Z:\develop\wifi\mls\rootfs_hi3518ev200\Compress\Server\script\autorun.sh
+
+
+
+
+【注意】
+测试时是用自己编译的iwtest测的，iwtest源码中改了服务器ip为192.168.1.2，因为原来的192.168.2.2 ip的iwtest不能用于1段网络
+
+
+在3516c的板子上跑时，需要把Thread_Gpio_Management线程给注释掉，否则会一直复位为AP模式，怎么都切不到STA模式。因为板子差异，检测到5次低电平后会自动切回AP模式，其实是检测硬件上复位AP模式的拨码开关.
+打包时需要复原把Thread_Gpio_Management线程打开
+
+
+
+
+
+【经验】
+wigewige load 8188 ko and run iwtest,main,1708
+connect: Network is unreachable
+iwtest异常打印，ipc还没连上wifi时去运行iwtest会打印connect: Network is unreachable
+
+
+
+ Adding DNS server 172.16.0.1
+ Adding DNS server 114.114.114.114
+wifi ok, ntp sync now !wigewige load 8188 ko and run iwtest,Thread_arp,722
+NetReqProc: Accept new AV client from 192.168.1.2 
+NetReqProc: Accept new AV client from 192.168.1.2 
+flag A ! 
+iwtest正常打印，ipc连上wifi后再去运行iwtest
+
+
+
+信号扫描
+狂打印扫描到的信号，是因为信号扫描线程的缘故，在每隔3s刷新一次信号强度
+
+
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+
+
+rmmod wdt
+
+
+手动连上wifi或AP参考步骤
+vi /etc/wpa_supplicant.conf
+
+ctrl_interface=/var/run/wpa_supplicant
+network={
+        ssid="eapil_factory"
+        scan_ssid=1
+        key_mgmt=WPA-PSK
+        proto=RSN WPA
+        pairwise=CCMP TKIP
+        group=CCMP TKIP
+        psk="12345678"
+}
+
+killall hostapd udhcpd
+/mnt/flash/Server/resource/wifi/wpa_supplicant -D wext -i ra0 -c /etc/wpa_supplicant.conf -B
+udhcpc -i ra0 -n -s /usr/share/udhcpc
+
+
+
+
+*******************我是分割线**********************
+
+
+狂打印3、4十个wifi信号的打印
+有时候搜不到打印，可能是system执行命令打印出的，而不是程序里写的，所以搜不到
+
+
+*******************我是分割线**********************
+
+从STA回到AP的方法：
+rm /mnt/flash/data/WifiInfo
+
+
+*******************我是分割线**********************
+
+绕过加密的方法
+rm Sha...
+软件在不同加密芯片的板子上运行，存在加密过不去、程序启动不起来的问题
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+
+ra0       Scan completed :
+          Cell 01 - Address: D4:EE:07:2D:F9:BA
+                    ESSID:"HiWiFi_2DF9BA"
+                    Protocol:IEEE 802.11bgn
+                    Mode:Master
+                    Frequency:2.437 GHz (Channel 6)
+                    Encryption key:on
+                    Bit Rates:300 Mb/s
+                    Extra:wpa_ie=dd160050f20101000050f20401000050f20401000050f202
+                    IE: WPA Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+                    Extra:
+                    IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+                    Quality=58/100  Signal level=30/100  
+                    Extra:fm=0001
+          Cell 02 - Address: 8C:F2:28:86:B8:FE
+                    ESSID:"apptest"
+                    Protocol:IEEE 802.11bgn
+                    Mode:Master
+                    Frequency:2.462 GHz (Channel 11)
+                    Encryption key:on
+                    Bit Rates:300 Mb/s
+                    Extra:wpa_ie=dd160050f20101000050f20401000050f20401000050f202
+                    IE: WPA Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+                    Extra:
+                    IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+                    Quality=96/100  Signal level=60/100  
+                    Extra:fm=0003
+
+eth0      Interface doesn't support scanning.
+
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+AP模式: Access Point，提供无线接入服务，允许其它无线设备接入，提供数据访问，一般的无线路由/网桥工作在该模式下。AP和AP之间允许相互连接
+
+Sta模式: Station, 类似于无线终端，sta本身并不接受无线的接入，它可以连接到AP，一般无线网卡即工作在该模式。
+
+
+
+
+http://eeepage.info/wifimode-sta-ap/
+
+http://blog.csdn.net/bingfengxiao/article/details/6447725
+
+http://dengxiazhu.blog.51cto.com/6712765/1307736
+
+http://www.hlktech.com/Article/Read/166.aspx
+
+http://www.cnblogs.com/rain-blog/p/rtl8723bs-driver-test.html
+

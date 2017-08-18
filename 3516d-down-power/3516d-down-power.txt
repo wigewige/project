@@ -1,0 +1,25 @@
+
+
+
+！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！蛍護�漾�！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+
+
+恷朔俐個頁
+loadKO file
+	himm 0x20120014 0xc0066
+	insmod ${DRV_PATH}/hi3516a_pm.ko
+咀葎啣周貧聞喘議頁児噐PWM議DC-DC補竃
+紋算阻圻栖析議pm ko
+
+
+test:
+media_avs_en    media_avs_profile   media_avs_inter   cpu_avs_en    cpu_avs_inter
+
+insmod hi3516a_pm.ko media_avs_en=1    media_avs_profile=3   media_avs_inter=20   cpu_avs_en=1    cpu_avs_inter=20
+
+insmod hi3516a_pm.ko media_avs_en=0  cpu_avs_en=0
+
+insmod hi3516a_pm.ko cpu_avs_en=0 media_avs_en=0
+
+
+

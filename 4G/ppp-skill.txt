@@ -1,0 +1,28 @@
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+#download ppp-2.4.5.tar.gz from https://download.samba.org/pub/ppp/
+
+#decompress
+
+./configure
+
+make CC=arm-hisiv300-linux-gcc
+
+make ARCH=arm CROSS_COMPILE=arm-hisiv300-linux- menuconfig
+
+#Device Drivers -> Network device support  -> <*> PPP (point-to-point protocol)中，选中所有ppp选项：
+
+make ARCH=arm CROSS_COMPILE=arm-hisiv300-linux- uImage
+
+#burn uImage in uboot through tftp server
+
+#cp chat pppd to target board
+cp /mnt/nfs/share/develop/source-code/ppp-2.4.5/pppd ./
+
+
+Reference
+http://blog.sina.com.cn/s/blog_80435476010146n8.html
+http://blog.csdn.net/lanyou1900/article/details/40185259
+http://zhuqingcode.github.io/linux/2013/12/31/ppp-244.html
+                                                   
