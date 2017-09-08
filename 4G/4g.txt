@@ -1,6 +1,193 @@
 
 
 
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+增加vbus硬件接线后，reboot重启仍然可以ping通baidu 114
+2次断开网线，连上网线，4G都仍然能ping 通baidu 114，显示正常。不过也碰到过什么都ping不通的情况
+
+
+
+重启问题
+我之前尝试过rmmod这些模块，qmi_wwan和qcserial成功卸载了，但option，usb_wwan，usbserial
+
+//		ret = system("udhcpc -i eth0 -t 10 -n -s /etc/udhcpc.script");
+		ret = system("/sbin/udhcpc -i eth0 -t 10 -n -s /etc/udhcpc.script");
+
+
+
+网页 mobile block  src/web
+
+要及时报警,不要过滤很长时间,改为 5  motion_detect.c #define ALARM_MAX_SEC 5 // 60
+
+
+
+
+GobiNet
+ethX
+/dev/qcqmiX
+
+
+
+[err]
+QMI WWAN
+wwanX
+/dev/cdc-wdmX
+~ # ifconfig wwan0
+ifconfig: wwan0: error fetching interface information: Device not found
+~ # 
+~ # 
+
+
+~ # lsusb 
+Bus 001 Device 001: ID 1d6b:0002
+Bus 002 Device 001: ID 1d6b:0001
+
+
+
+carl@carl-OptiPlex-7010:~$ ls /sys/bus/usb/drivers
+cdc_acm cdc_wdm ftdi_sio GobiNet hub option qmi_wwan usb usbfs usbhid usbserial
+usbserial_generic
+
+If USB serial driver is required, please make sure "option" exists. If CDC ACM driver is required, please
+make sure "cdc_acm" exists. If GobiNet driver is required, please make sure "GobiNet" exists. If QMI
+WWAN driver is required, please make sure "qmi_wwan" exists.
+
+
+read from /dev/ttyUSB2 ERRORsetattr: Inappropriate ioctl for device
+,337
+set new gateway error ! errno=17
+REOPEN_TTY: reopeOR !!!
+
+
+~ # ls /dev/ttyUSB*
+/dev/ttyUSB2
+
+
+~ # ls /sys/bus/usb/drivers
+cdc_wdm      hub          option       qmi_wwan     usb          usb-storage  usbfs        usbhid       usbserial
+~ # 
+
+
+
+[success]
+~ # ls /sys/bus/usb/drivers
+cdc_wdm      option       usb          usbfs        usbserial
+hub          qmi_wwan     usb-storage  usbhid
+~ # 
+
+~ # ls /dev/ttyUSB
+ttyUSB0  ttyUSB1  ttyUSB2  ttyUSB3
+
+~ # lsusb 
+Bus 001 Device 002: ID 2c7c:0125
+Bus 001 Device 001: ID 1d6b:0002
+Bus 002 Device 001: ID 1d6b:0001
+~ # 
+~ # 
+
+~ # ls /dev/cdc-wdm0 
+/dev/cdc-wdm0
+
+
+DHCP
+
+模块化 打包进去
+看reboot复位后还有没有问题
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+【重要】
+原来4G时手机访问，根本不需要域名支持，只需网络通就行，比如连ip地址能通就行
+所以折腾好久的解决问题实现ping baidu都没多大实用意义了
+
+
+mount -t nfs -o nolock 10.0.39.221:/home/wigewige/ /mnt/nfs
+cd /mnt/share/develop/project/4G/APP/
+cp hiapp /mnt/flash/
+cd /mnt/flash/
+killall hiapp ;./hiapp &
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+归结为两个问题:
+1 ping 114 8.8通,但ping不通baidu 163           手动改/etc/resolve为114可以ping通baidu了
+2 ping 114 8.8不通,ping baidu 163也不通        代码中改为114,结果114也ping不通了,但第一次一定成功,第二次一定失败ping不通.有时候第二次连上时也ping通baidu了.
+有个规律,如果连上网线,没去ping任何网络,那断开网络后baidu,114等大概率都能ping通,但不是每次都成功,注意到有一次失败,连上网线时什么也没ping,但断开网线时就是ping不通.
+如果连上网络,去ping了baidu或114,那么断开网络后,baidu,114等都不能ping通.
+baidu,163,114,8.8都是要么一起能ping通,要么一起不能ping通,好像与硬件又没关系了.
+连上网线时ifconfig,ps操作对断开网线后ping不ping的通,无影响.目前看来只有ping能影响到它mobile时连网情况.
+不知为什么,其他如baidu,163,8.8都能ping通时,114有时会特别些,ping不通.难道跟它是域名dns有一定关系?
+
+
+
+
+
+【重要】
+找到ping通114,但ping不通baidu的问题了
+原来是queutel申请得到的域名不稳定
+解决办法是mobile时也用有限配的域名
+
+
+已经是cmnet，插移动4G卡测，发现
+现在发现又是第三次连4G才会出问题，只有8.8.8.8可以ping通，baidu 114  163都不通。自动获得的域名是
+~ # cat /etc/resolv.conf
+nameserver 221.179.38.7
+nameserver 120.196.165.7
+~ # 
+
+
+重新又插拔了次，又奇怪的事，能通114，也能通8.8.8.8，但又不能通163和baidu这些域名的网站
+
+
+又可以了，用cmnet也可以第二次ping通www.baidu.com   www.163.com  8.8.8.8  但就是ping不同114.114.114.114
+114也不保险
+
+
+
+
+
+移动卡是第二次失败，联通卡用cmnet也是第二次ping baidu失败。
+
+
+果然，网络也不通了，114都不通，打印说连上了。
+
+
+【重要】
+终于知道之前手动连接时为什么会做成延时sleep(10) 10秒了
+对比插拔时移动卡可以连上，手动点击时连不上，对比出来，发现了等待的延时不同这点差异
+被我改成延时1s后，连移动卡时因为连接上网了慢，马上又被kill重连，所以一直连不上，联通因为连接快，没出问题
+解决办法是多等一会，至多10s
+
+
+
+
+【重要】
+第二次时断开网线，ping 114也不通，可能是没有使用对应的-s cmnet -s 3gnet，而是用了通用的或不对应的连导致。
+后来改为对应移动和联通的-s之后，基本第二次把网线，第三次拔网线都能ping通114
+
+移动卡，
+增加延时机制逻辑后，现在手动连很正常了，但插拔网线会ping不通www.baidu.com，情况
+联通也有这情况，但ping 114确实正常能ping通的。就是ping 域名不成功。
+是手动连成功后，断开还可以连上，再断开网线连上时，这第二次连就失败
+连ping 114.114.114.114也不通了。连4G网络都连不上了。
+
+
+
+
+
+~ # 
+~ # ifconfig wwan0
+ifconfig: wwan0: error fetching interface information: Device not found
+~ # 
+
+需要断电上电重启，才能检测到wwan0模块，比如烧写后，因为硬件没有复位。
+
+
 
 
 ——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
@@ -8,6 +195,9 @@
 NTP  202.120.2.101
 ntp.sjtu.edu.cn 202.120.2.101 (上海交通大学网络中心NTP服务器地址）
 https://www.douban.com/note/171309770/
+
+
+
 
 
 ——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
@@ -162,6 +352,51 @@ ok，明白了。那就只需要对电信卡做处理了，那应该怎么处理？
 
 
 
+公网APN
+移动：cmnet
+联通：3gnet
+电信：ctnet
+电信2G 3G或其他专网需要设用户名 密码
+
+
+上海域格 19:49:47 
+公网APN
+移动：cmnet
+联通：3gnet
+电信：ctnet
+张炜 19:50:04 
+ok
+张炜 19:50:31 
+这三步都是必须要操作一遍的是吧
+上海域格 19:50:46 
+不是的
+上海域格 19:51:04 
+电信2G 3G或其他专网需要设用户名 密码
+上海域格 19:51:10 
+其他网络不需要
+张炜 19:51:16 
+ok
+张炜 19:51:58 
+也就是说,如果插了电信卡,就做这条 AT^NETCFG=0,32774,,,4,,,"",0,"CARD","CARD",1
+上海域格 19:53:12 
+是电信2G 3G
+4G不需要
+张炜 19:53:14 
+,如果插了电信卡2G/3G,就只用执行这条 AT^NETCFG=0,32774,,,4,,,"",0,"CARD","CARD",1
+如果是别的卡,就不需执行AT^NETCFG=0,32774,,,4,,,"",0,"CARD","CARD",1,但需要设APN
+张炜 19:54:24 
+好,我明白了,AT^NETCFG=0,32774,,,4,,,"",0,"CARD","CARD",1只针对电信2G/3G
+上海域格 19:54:51 
+是的，公网是这样的
+张炜 19:55:16 
+那APN呢,不管是电信2G/3G,还是别的卡,一律都要执行AT+CGDCONT=1,"IP"," APN吗
+上海域格 19:56:44 
+是的，具体APN根据卡的情况匹配一下
+张炜 19:57:14 
+好,所有卡都执行设置APN
+
+
+
 
 
 
@@ -240,15 +475,51 @@ echo -en "AT+cpin?\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
 echo -en "AT+cimi\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
 460013854210850
           
+~ # echo -en "AT+cimi\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+ obile_CMD_Recv: AT+cimi
+Mobile_CMD_Recv: 
+460000950340312
+
+OK
+ 
+~ # 
+~ # 
+          
+          
 
 查卡注册状态
 echo -en "AT+cgreg?\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
 +CGREG: 0,1
 
 
+echo -en "AT+COPS?\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+
 查询卡所属运营商
 echo -en "AT+cops?\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
 +COPS: 0,0,"CHN-UNICOM",7
+
+~ # echo -en "AT+cops?\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+ obile_CMD_Recv: AT+cops?
+Mobile_CMD_Recv: 
++COPS: 0,0,"CHINA MOBILE",0               // 0是因为当时没接天线 
+
+OK
+ 
+~ # 
+
+~ # echo -en "AT+cops?\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+ obile_CMD_Recv: AT+cops?
+Mobile_CMD_Recv: 
++COPS: 0,0,"CHINA MOBILE",7
+
+OK
+ 
+~ # 
+~ # 
+
+
+
+
 
 读取当前注册网络制式状态：^SYSINFO
 echo -en "AT^SYSINFO\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
@@ -272,6 +543,106 @@ OK
 
 3G
 
+~ # echo -en "AT^SYSINFO\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+ obile_CMD_Recv: AT^SYSINFO
+Mobile_CMD_Recv: 
+^SYSINFO: 2,3,0,9,1
+
+OK
+ 
+ 
+软件复位模块
+
+echo -en "AT+CFUN=?\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+
+  # Mobile_CMD_Recv: AT+CFUN=?
+Mobile_CMD_Recv: 
++CFUN: (0,1,4),(0,1)
+
+OK
+
+
+echo -en "AT+QPOWD=?\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+
+echo -en "AT+QPOWD=0\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+
+echo -en "AT+CFUN?\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+~ # echo -en "AT+CFUN?\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+ obile_CMD_Recv: AT+CFUN?
+Mobile_CMD_Recv: 
++CFUN: 1
+
+OK
+
+
+AT命令不区分大小写
+
+echo -en "AT+cfun?\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2 
+echo -en "at+cfun?\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+
+
+~ # 
+~ # echo -en "AT+CFUN?\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+ obile_CMD_Recv: AT+CFUN?
+Mobile_CMD_Recv: 
++CFUN: 1
+
+OK
+ 
+~ # 
+~ # echo -en "AT+cfun?\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+Mobile_CMD_Recv: AT+cfun?
++CFUN: 1
+
+OK
+ 
+~ # 
+~ # 
+~ # echo -en "at+cfun?\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+Mobile_CMD_Recv: at+cfun?
++CFUN: 1
+
+OK
+ 
+~ # 
+
+
+
+
+echo -en "AT+CFUN=1,1\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+
+echo -en "AT+CFUN=1,1\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2;reboot
+
+~ # echo -en "AT+CFUN=1,1\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+Mobile_CMD_Recv: AT+CFUN=1,1
+OK
+ 
+~ # 
+
+
+~ # 
+~ # 
+~ # echo -en "AT+CFUN=1,1\r\n" > /dev/ttyUSB2; cat /dev/ttyUSB2
+Mobile_CMD_Recv: AT+CFUN=1,1
+OK
+ 
+~ # 
+~ # lsmod usb 1-1: USB disconnect, device number 2
+option1 ttyUSB0: GSM modem (1-port) converter now disconnected from ttyUSB0
+option 1-1:1.0: device disconnected
+option: option_instat_callback: error -108
+option1 ttyUSB1: GSM modem (1-port) converter now disconnected from ttyUSB1
+option 1-1:1.1: device disconnected
+option: option_instat_callback: error -108
+read from /dev/ttyUSB2 ERROR !!!
+option1 ttyUSB2: GSM modem (1-port) converter now disconnected from ttyUSB2
+option 1-1:1.2: device disconnected
+option: option_instat_callback: error -108
+option1 ttyUSB3: GSM modem (1-port) converter now disconnected from ttyUSB3
+wigewige Mobile_Reset,361
+REOPEN_TTY: open /dev/ttoption 1-1:1.3: device disconnected
+yUSB2 ERROR !!!
+qmi_wwan 1-1:1.4: wwan0: unregister 'qmi_wwan' usb-hiusb-ehci-1, Qualcomm WWAN/QMI device
 
 
 

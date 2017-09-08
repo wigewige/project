@@ -1,0 +1,71 @@
+
+wigewige signal strength temp=27, Mobile_Response_Analysis,1276
+wigewige signal strength temp=27,MobileINFO.netSignal=4, Mobile_Response_Analysis,1303
+wigewige signal MODE temp=9, Mobile_Response_Analysis,1310
+wigewige signal strength temp=9, Mobile_Response_Analysis,1324
+wigewige signal strength temp=9,MobileINFO.registeredNet=4, Mobile_Response_Analysis,1332
+Dev wwan0 has no IP, start quectel-CM!
+killall: quectel-CM: no process killed
+[08-29_11:23:46:566] Quectel_Linux_ConnectManager_SR01A01V23
+[08-29_11:23:46:567] /mnt/flash/Server/tools/quectel-CM profile[1] = 3gnet///0, pincode = (null)
+[08-29_11:23:46:569] Find qmichannel = /dev/cdc-wdm0
+[08-29_11:23:46:570] Find usbnet_adapter = wwan0
+[08-29_11:23:46:594] cdc_wdm_fd = 37
+[08-29_11:23:46:670] Get clientWDS = 19
+[08-29_11:23:46:700] Get clientDMS = 1
+[08-29_11:23:46:732] Get clientNAS = 3
+[08-29_11:23:46:764] Get clientUIM = 1
+[08-29_11:23:46:796] Get clientWDA = 1
+[08-29_11:23:46:829] requestBaseBandVersion EC20CFDR02A09M4G  1  [Nov 30 2016 04:00:00]
+[08-29_11:23:46:893] requestGetSIMStatus SIMStatus: SIM_READY
+[08-29_11:23:46:893] requestSetProfile[1] 3gnet///0
+[08-29_11:23:46:957] requestGetProfile[1] 3gnet///0
+[08-29_11:23:46:989] requestRegistrationState2 MCC: 460, MNC: 1, PS: Attached, DataCap: LTE
+[08-29_11:23:47:020] requestQueryDataCall ConnectionStatus: DISCONNECTED
+[08-29_11:23:47:084] requestRegistrationState2 MCC: 460, MNC: 1, PS: Attached, DataCap: LTE
+[08-29_11:23:47:117] requestSetupDataCall WdsConnectionIPv4Handle: 0x87932d70
+[08-29_11:23:47:180] requestQueryDataCall ConnectionStatus: CONNECTED
+[08-29_11:23:47:376] deleting routers
+route: SIOCDELRT: No such process
+[08-29_11:23:47:411] adding dns 120.80.80.80
+[08-29_11:23:47:412] adding dns 221.5.88.88
+[08-29_11:23:47:415] udhcp client (v0.9.8) started
+[08-29_11:23:47:416] Sending discover...
+[08-29_11:23:47:416] Sending select for 10.75.157.27...
+[08-29_11:23:47:416] Lease of 10.75.157.27 obtained, lease time 7200
+wigewige ntp sync now ! Mobile_Connect,983
+***link down status changed***.
+PHY: himii:01 - Link is Down
+
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^															  ^
+wigewige connect 4g net start, Thread_arp,1109
+^															  ^
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+wigewige 4G is already link, cur is 4G, Thread_arp,1146
+wigewige ntp sync now ! Thread_arp,1156
+PHY: himii:01 - Link is Up - 100/Full
+
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^															  ^
+link ok, wigewige kill quectel-CM, g_4g_connect_flag=2,Thread_arp,1250
+^															  ^
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[08-29_11:23:51:743] requestDeactivateDefaultPDP err = 0
+wigewige connect back up file, Thread_arp,1277
+wigewige Mobile_Reset, Mobile_Reset,332
+
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^															  ^
+[Thread_arp:line:1350] wigewige
+^															  ^
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[08-29_11:23:51:952] QmiWwanThread exit
+[08-29_11:23:51:956] main exit
+

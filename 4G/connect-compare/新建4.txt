@@ -1,0 +1,123 @@
+~ # ping www.baidu.com
+
+
+PING www.baidu.com (14.215.177.39): 56 data bytes
+64 bytes from 14.215.177.39: seq=0 ttl=55 time=7.664 ms
+mobile_cfg.flag =  2
+Connect MobileNet !
+err_code = 0
+wigewige, get net signal strength,Mobile_Connect,734
+Mobile_CMD_Send (6 Bytes): AT+CSQ
+wigewige, get net mode,Mobile_Connect,742
+Mobile_CMD_Send (10 Bytes): AT^SYSINFO
+QUECTEL_EC20 zan not support,Mobile_SetNetSwitchMode,565
+Mobile_CMD_Send (8 Bytes): AT+COPS?
+wigewige, Mobile_Connect,957
+wigewige, Mobile_Connect,960
+Mobile_CMD_Recv: AT+CSQ
++CSQ: 25,99
+
+OK
+AT+COPS?
++COPS: 0,0,"CHN-UNICOM",7
+
+OK
+ 
+wigewige signal strength temp=25, Mobile_Response_Analysis,1281
+wigewige signal strength temp=25,MobileINFO.netSignal=4, Mobile_Response_Analysis,1308
+12345 Dev wwan0 has no IP, start quectel-CM!
+killall: quectel-CM: no process killed
+[08-29_11:02:33:100] Quectel_Linux_ConnectManager_SR01A01V23
+[08-29_11:02:33:100] /mnt/flash/Server/tools/quectel-CM profile[1] = 3gnet///0, pincode = (null)
+[08-29_11:02:33:102] Find qmichannel = /dev/cdc-wdm0
+[08-29_11:02:33:103] Find usbnet_adapter = wwan0
+[08-29_11:02:33:134] cdc_wdm_fd = 37
+[08-29_11:02:33:216] Get clientWDS = 19
+[08-29_11:02:33:248] Get clientDMS = 1
+[08-29_11:02:33:280] Get clientNAS = 3
+[08-29_11:02:33:311] Get clientUIM = 1
+[08-29_11:02:33:344] Get clientWDA = 1
+[08-29_11:02:33:376] requestBaseBandVersion EC20CFDR02A09M4G  1  [Nov 30 2016 04:00:00]
+64 bytes from 14.215.177.39: seq=1 ttl=55 time=7.119 ms
+[08-29_11:02:33:440] requestGetSIMStatus SIMStatus: SIM_READY
+[08-29_11:02:33:440] requestSetProfile[1] 3gnet///0
+[08-29_11:02:33:504] requestGetProfile[1] 3gnet///0
+[08-29_11:02:33:536] requestRegistrationState2 MCC: 460, MNC: 1, PS: Attached, DataCap: LTE
+[08-29_11:02:33:568] requestQueryDataCall ConnectionStatus: DISCONNECTED
+[08-29_11:02:33:631] requestRegistrationState2 MCC: 460, MNC: 1, PS: Attached, DataCap: LTE
+[08-29_11:02:33:920] requestSetupDataCall WdsConnectionIPv4Handle: 0x8791e050
+[08-29_11:02:33:984] requestQueryDataCall ConnectionStatus: CONNECTED
+[08-29_11:02:34:154] deleting routers
+12345 Dev wwan0 has no IP, start quectel-CM!
+route: SIOCDELRT: No such process
+[08-29_11:02:34:224] adding dns 120.80.80.80
+[08-29_11:02:34:226] adding dns 221.5.88.88
+[08-29_11:02:34:230] udhcp client (v0.9.8) started
+[08-29_11:02:34:230] Sending discover...
+[08-29_11:02:34:230] Sending select for 10.232.94.98...
+[08-29_11:02:34:230] Lease of 10.232.94.98 obtained, lease time 7200
+[08-29_11:02:34:338] Quectel_Linux_ConnectManager_SR01A01V23
+[08-29_11:02:34:339] /mnt/flash/Server/tools/quectel-CM profile[1] = 3gnet///0, pincode = (null)
+[08-29_11:02:34:340] Find qmichannel = /dev/cdc-wdm0
+[08-29_11:02:34:341] Find usbnet_adapter = wwan0
+[08-29_11:02:34:411] /proc/1386/fd/37 -> /dev/cdc-wdm0
+[08-29_11:02:34:417] /proc/1386/exe -> /mnt/flash/Server/tools/quectel-CM
+64 bytes from 14.215.177.39: seq=2 ttl=55 time=7.562 ms
+[08-29_11:02:34:561] QmiWwanThread exit
+[08-29_11:02:34:565] main exit
+12345 Dev wwan0 has no IP, start quectel-CM!
+[08-29_11:02:35:453] cdc_wdm_fd = 37
+64 bytes from 14.215.177.39: seq=3 ttl=55 time=7.256 ms
+[08-29_11:02:35:494] Quectel_Linux_ConnectManager_SR01A01V23
+[08-29_11:02:35:495] /mnt/flash/Server/tools/quectel-CM profile[1] = 3gnet///0, pincode = (null)
+[08-29_11:02:35:498] Find qmichannel = /dev/cdc-wdm0
+[08-29_11:02:35:499] Find usbnet_adapter = wwan0
+[08-29_11:02:35:534] /proc/1401/fd/37 -> /dev/cdc-wdm0
+[08-29_11:02:35:534] /proc/1401/exe -> /mnt/flash/Server/tools/quectel-CM
+[08-29_11:02:35:584] Get clientDMS = 1
+[08-29_11:02:35:617] Get clientNAS = 3
+[08-29_11:02:35:649] Get clientUIM = 1
+[08-29_11:02:35:680] Get clientWDA = 1
+[08-29_11:02:35:712] requestBaseBandVersion EC20CFDR02A09M4G  1  [Nov 30 2016 04:00:00]
+[08-29_11:02:35:777] requestGetSIMStatus SIMStatus: SIM_READY
+[08-29_11:02:35:777] requestSetProfile[1] 3gnet///0
+[08-29_11:02:35:778] QMIType 1 has no clientID
+[08-29_11:02:35:778] requestSetProfile err = -22
+[08-29_11:02:35:778] QMIType 1 has no clientID
+[08-29_11:02:35:778] requestGetProfile err = -22
+[08-29_11:02:35:808] requestRegistrationState2 MCC: 460, MNC: 1, PS: Attached, DataCap: LTE
+[08-29_11:02:35:809] QMIType 1 has no clientID
+[08-29_11:02:35:809] requestQueryDataCall err = -22
+[08-29_11:02:35:938] QmiWwanThread exit
+[08-29_11:02:35:941] main exit
+64 bytes from 14.215.177.39: seq=4 ttl=55 time=20.706 ms
+wigewige, err! quectel-CM connect net fail, resolve resolv.conf, Mobile_Connect,991
+[08-29_11:02:36:653] cdc_wdm_fd = 37
+wigewige connect back up file, Mobile_Connect,1001
+[08-29_11:02:36:737] Get clientWDS = 19
+[08-29_11:02:36:768] Get clientDMS = 1
+[08-29_11:02:36:800] Get clientNAS = 3
+[08-29_11:02:36:832] Get clientUIM = 1
+[08-29_11:02:36:864] Get clientWDA = 1
+[08-29_11:02:36:897] requestBaseBandVersion EC20CFDR02A09M4G  1  [Nov 30 2016 04:00:00]
+[08-29_11:02:36:960] requestGetSIMStatus SIMStatus: SIM_READY
+[08-29_11:02:36:961] requestSetProfile[1] 3gnet///0
+[08-29_11:02:37:024] requestGetProfile[1] 3gnet///0
+[08-29_11:02:37:057] requestRegistrationState2 MCC: 460, MNC: 1, PS: Attached, DataCap: LTE
+[08-29_11:02:37:089] requestQueryDataCall ConnectionStatus: DISCONNECTED
+[08-29_11:02:37:250] QmiWwanThread exit
+[08-29_11:02:37:256] main exit
+64 bytes from 14.215.177.39: seq=5 ttl=55 time=14.411 ms
+64 bytes from 14.215.177.39: seq=6 ttl=55 time=7.504 ms
+64 bytes from 14.215.177.39: seq=7 ttl=55 time=7.474 ms
+64 bytes from 14.215.177.39: seq=8 ttl=55 time=7.402 ms
+64 bytes from 14.215.177.39: seq=9 ttl=55 time=7.145 ms
+64 bytes from 14.215.177.39: seq=10 ttl=55 time=7.331 ms
+64 bytes from 14.215.177.39: seq=11 ttl=55 time=6.641 ms
+64 bytes from 14.215.177.39: seq=12 ttl=55 time=6.245 ms
+64 bytes from 14.215.177.39: seq=13 ttl=55 time=6.671 ms
+64 bytes from 14.215.177.39: seq=14 ttl=55 time=7.384 ms
+64 bytes from 14.215.177.39: seq=15 ttl=55 time=7.195 ms
+64 bytes from 14.215.177.39: seq=16 ttl=55 time=7.486 ms
+64 bytes from 14.215.177.39: seq=17 ttl=55 time=7.209 ms
+

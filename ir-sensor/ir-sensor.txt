@@ -1,0 +1,128 @@
+
+
+
+怀疑点
+i2C读取速率——改为250kbps也是一样
+连续读取,与分散读取
+GPIO驱动发起结束时多一个时钟信号——去掉，也没效果
+直接读出——也确实是0
+
+
+0x14->0x15
+data_width=2 -> data_width=1
+
+
+有这个可能
+The complete sensor data must be read at once. If the communication fails somewhere in
+between, all successive data will be corrupted. The readout can be stopped anywhere by
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+
+
+32x32共1024个像素点, 32x8共256个电子偏移采样点
+即所谓32x32 Array + 256 electrical Offsets对应
+无论是读像素,还是读电子偏移量,对应采样后存到256x16 bit Register中,也就是对应每组BLOCK中TOP里的128x16bit + BOTTON里的128x16bit
+即每对顶和底的BLOCK是同时采集并AD转换的，但不同的BLOCK对是分时采样的。
+也即每次得到4个BLOCK中的一个BLOCK，即1/4帧，完整帧率60，1/4帧率就是240fps
+
+EOC flag   end of conversion  转换结束，0 未完成，1 完成                 
+ 
+ 
+MBIT TRIM 可以定义采样精度，一般16bit表示像素值，高精度
+ 
+5MHZ, 16BIT采样精度，1/4帧即一个BLOCK测量时间是26.24ms，采集1帧即需要26x4=104ms，帧率大概是9-10帧不到的样子，典型就是8帧/s。所以开始后需要等30ms才能去取得到数据
+ 
+ 
+怎么样叫完全读出所有数据？上下各258个字节吗，516个字节
+The complete sensor data must be read at once. If the communication fails somewhere in
+between, all successive data will be corrupted. The readout can be stopped anywhere by
+pausing the clock. A new initialized readout proceeds at this stopped byte by continuing the
+clock, but the index is reset when a new conversion has been started.
+
+
+
+内嵌EEPROM大小 built-in 8x8bit=64kbit 8KB
+
+
+如何读取EEPROM数据，默认
+
+知道怎么读EEPROM了，EEPROM也挂载在I2C总线上，地址是0xA0，然后按照24AA64的操作要求读取里面的值和写里面的值
+可以读出里面的值了，如PTAT gradient and the PTAT offset .
+The chip uses the 7-bit I2C address 0x34 for configuration and sensor data and the address
+0xA0 to access the internal EEPROM. The address byte is followed by an 8-bit command.
+
+
+？什么叫The temperature calculation is only valid if the same settings are used that have been set
+during calibration！
+
+
+EEPROM和内部寄存器的关系，还是没搞明白？像素值数据是存在EEPROM中的吗？
+像素->EEPROM->256x16bit register?
+感觉32x32个像素数据是存在EEPROM中的，按照顶底的顺序方式，共2KB字节，1K x 16bit
+为什么OFFSET也有2KB字节，照理只有256 x 16bit才对，即512B,怎么offset也有2KB？ offset是只有顶底共512个，也是同有效像素一样从0x0A和0x0B方式读出值。
+我估计，像素值和offset值都是从EEPROM中读出来的，
+那就分开了，EEPROM中的数据和从0x34读出的像素值数据是两个东西两码事了。
+
+
+
+EEPROM中的值用来干嘛的？校准吗？
+
+补偿热引起的偏移误差，热能抵消
+
+补偿电源引起的偏移误差，电气抵消
+
+
+
+数据结构，顶底像素数据组成一张数据表，1024个short组成pixel，256个short组成offset，一维数组，按行列的要求赋值，BOTTOM时先填数组后面，再填数组前面
+
+
+把EEPROM中的数据都取出来，校准用，估计也是每次启动测量完一次，就生成一批数据
+
+
+怎么用查找表？
+Ta was calculated before to 3000 dK.
+The matching region in the look-up table is already marked yellow, the bi-linear interpolation
+is leading to an object temperature of 3941 dK = 120.9 °C.
+3941dk怎么得出的？ dk跟开尔文是0.1倍的关系吗，分开尔文，类似于分米
+
+
+根据环境温度和该像素点电压，得出该像素点的温度值，单位是dK，减去273.15即是摄氏温度
+
+
+
+应该还有一个文件Table.c，里面有几张表，TN指示使用那张表？这个双线性插值是怎么做的？
+
+
+8.4 Object Temperature:
+The calculation of the object temperature is done by using a look-up table and doing a bi-linear interpolation, the matching table is given by the tablenumber (TN). The table is supplied in a separate file named “Table.c”.
+The sensitivity coefficients (
+8.4对象温度:
+对象温度的计算是通过使用一个查找表并进行双线性插值来完成的，匹配表由tablenumber(TN)给出。该表是在一个名为“table.c”的单独文件中提供的
+
+
+
+去读EEPROM前，是否要将8个BLOCK全都测量一遍才有意义？电气偏移量也是一样，是否需要所有BLOCK都测过一遍才去读这个偏差值？
+
+
+为什么每个BLOCK，从76到127都读不到数据？0到75是可以读到的，不管是顶还是底，都是如此，8个都是这样。
+
+
+ptat_value_array_from_electrical_offset有什么不同，与ptat_value_array，值不同吗？有影响吗？
+值不一样
+ELEC OFFSET读出 60035 30077
+ACTIVE PIXEL 读出 52610 20860
+
+0-75有值，76-127为0
+读ELECTRIC OFFSET也有这个问题 
+
+
+
+
+
+
+
+

@@ -1,0 +1,36 @@
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+wigewige 4G is not link, cur is wire, backup resolv.conf,Fun_Mobile_Get_IPAddr_API, Thread_arp,1116
+killall: quectel-CM: no process killed
+wigewige connect back up file, Thread_arp,1120
+[08-29_14:34:01:115] Quectel_Linux_ConnectManager_SR01A01V23
+[08-29_14:34:01:116] /mnt/flash/Server/tools/quectel-CM profile[1] = cmnet///0, pincode = (null)
+[08-29_14:34:01:124] Find qmichannel = /dev/cdc-wdm0
+[08-29_14:34:01:125] Find usbnet_adapter = wwan0
+[08-29_14:34:01:152] cdc_wdm_fd = 37
+[08-29_14:34:01:240] Get clientWDS = 19
+[08-29_14:34:01:271] Get clientDMS = 1
+[08-29_14:34:01:302] Get clientNAS = 3
+[08-29_14:34:01:334] Get clientUIM = 1
+[08-29_14:34:01:366] Get clientWDA = 1
+[08-29_14:34:01:404] requestBaseBandVersion EC20CFDR02A09M4G  1  [Nov 30 2016 04:00:00]
+[08-29_14:34:01:462] requestGetSIMStatus SIMStatus: SIM_READY
+[08-29_14:34:01:463] requestSetProfile[1] cmnet///0
+[08-29_14:34:01:526] requestGetProfile[1] cmnet///0
+[08-29_14:34:01:571] requestRegistrationState2 MCC: 460, MNC: 0, PS: Attached, DataCap: LTE
+[08-29_14:34:01:591] requestQueryDataCall ConnectionStatus: DISCONNECTED
+[08-29_14:34:01:655] requestRegistrationState2 MCC: 460, MNC: 0, PS: Attached, DataCap: LTE
+Thread_AV_Send client 36 select return 0, error 0 Success
+[08-29_14:34:02:041] requestSetupDataCall WdsConnectionIPv4Handle: 0x877a2f20
+[08-29_14:34:02:102] requestQueryDataCall ConnectionStatus: CONNECTED
+[08-29_14:34:02:265] deleting routers
+route: SIOCDELRT: No such process
+[08-29_14:34:02:301] adding dns 221.179.38.7
+[08-29_14:34:02:302] adding dns 120.196.165.7
+[08-29_14:34:02:305] udhcp client (v0.9.8) started
+[08-29_14:34:02:306] Sending discover...
+[08-29_14:34:02:306] Sending select for 10.118.195.76...
+[08-29_14:34:02:306] Lease of 10.118.195.76 obtained, lease time 7200
+wigewige connected 4G success, cur is 4G, Thread_arp,1131
+wigewige ntp sync now ! connect_detect_cnt=9,Thread_arp,1160
+~ # ps

@@ -1,0 +1,110 @@
+wigewige signal strength temp=25, Mobile_Response_Analysis,1282
+wigewige signal strength temp=25,MobileINFO.netSignal=4, Mobile_Response_Analysis,1309
+Mobile_CMD_Recv: 
+^SYSINFO: 2,3,0,9,1
+
+OK
+ 
+wigewige signal MODE temp=9, Mobile_Response_Analysis,1316
+wigewige signal strength temp=9, Mobile_Response_Analysis,1330
+wigewige signal strength temp=9,MobileINFO.registeredNet=4, Mobile_Response_Analysis,1338
+12345 Dev wwan0 has no IP, start quectel-CM!
+killall: quectel-CM: no process killed
+[08-05_08:00:15:816] Quectel_Linux_ConnectManager_SR01A01V23
+[08-05_08:00:15:817] /mnt/flash/Server/tools/quectel-CM profile[1] = (null)/(null)/(null)/0, pincode = (null)
+[08-05_08:00:15:823] Find qmichannel = /dev/cdc-wdm0
+[08-05_08:00:15:824] Find usbnet_adapter = wwan0
+[08-05_08:00:15:849] cdc_wdm_fd = 37
+[08-05_08:00:15:956] Get clientWDS = 19
+[08-05_08:00:15:988] Get clientDMS = 1
+[08-05_08:00:16:022] Get clientNAS = 3
+[08-05_08:00:16:052] Get clientUIM = 1
+[08-05_08:00:16:086] Get clientWDA = 1
+[08-05_08:00:16:117] requestBaseBandVersion EC20CFDR02A09M4G  1  [Nov 30 2016 04:00:00]
+[08-05_08:00:16:182] requestGetSIMStatus SIMStatus: SIM_READY
+[08-05_08:00:16:213] requestGetProfile[1] 3gnet///0
+[08-05_08:00:16:244] requestRegistrationState2 MCC: 460, MNC: 1, PS: Attached, DataCap: LTE
+[08-05_08:00:16:276] requestQueryDataCall ConnectionStatus: DISCONNECTED
+[08-05_08:00:16:341] requestRegistrationState2 MCC: 460, MNC: 1, PS: Attached, DataCap: LTE
+[08-05_08:00:16:373] requestSetupDataCall WdsConnectionIPv4Handle: 0x8791c660
+Mobile_CMD_Recv: 
++QIND: PB DONE
+ 
+[08-05_08:00:16:437] requestQueryDataCall ConnectionStatus: CONNECTED
+[08-05_08:00:16:640] deleting routers
+route: SIOCDELRT: No such process
+[08-05_08:00:16:676] adding dns 120.80.80.80
+[08-05_08:00:16:678] adding dns 221.5.88.88
+[08-05_08:00:16:682] udhcp client (v0.9.8) started
+[08-05_08:00:16:682] Sending discover...
+[08-05_08:00:16:683] Sending select for 10.24.53.91...
+[08-05_08:00:16:683] Lease of 10.24.53.91 obtained, lease time 7200
+wigewige ntp sync now ! Mobile_Connect,986
+[08:00:20.049035] [1260][TSI_start] LBS_login:2857: SvrIpAddr = 101.200.83.161 port = 48501
+[08:00:20.639533] [1260][TSI_start] LBS_login:2952: gooServerAddr = 182.92.179.138,  gooServerPort = 28622 pushAddr = 112.29.172.247,  webPort = 4000 pushPort = 0 stAddr = 101.200.83.161,  stPort = 28640 gwport 4330 pad 7777 webPort4dev = 47.94.70.226:8088 vas = 0
+[08:00:20.640041] [1260][TSI_start] GTUpdate_SetUrlAndPort:86: listport = :8088 ,listport = 8088 len = 17 len2 = 5
+[08:00:20.640241] [1260][TSI_start] GTUpdate_SetUrlAndPort:87: DOMAINURL = 47.94.70.226:8088 GetListIP = 47.94.70.226,GetListPort = 8088
+[08:00:20.640513] [1260][TSI_start] SetAlarmFlagValues:314: value=0
+[08:00:20.759055] [1260][TSI_start] TSI_LBSLogin:547: sret = 1
+[08:00:20.759382] [1260][TSI_start] TSI_SetStatus:333: statue  [3] -> [4]   565
+[08:00:20.759546] [1260][TSI_start] TSI_LBSLogin:569: 182.92.179.138 28622
+[08:00:20.831213] [1260][TSI_start] TSI_SetStatus:333: statue  [4] -> [5]   673
+TIMEINFO : hiapp glink status change 42.804
+localGooLinkCfg.status changeto 3
+[08:00:21.059795] [1260][TSI_start] TSI_SetStatus:333: statue  [5] -> [6]   884
+[08:00:21.079614] [1260][TSI_start] TSI_SetStatus:333: statue  [6] -> [7]   1013
+[08:00:21.119343] [1260][TSI_start] TSI_SetStatus:333: statue  [7] -> [9]   1121
+dhcp enable = 0
+======== Detect echo thread start ========
+HankBatchUpdateServer tcp serverIp:192.168.1.18	port:20203
+[08:00:21.390889] [1260][TSI_start] TSI_SetStatus:333: statue  [9] -> [10]   1139
+TIMEINFO : hiapp glink status change 43.824
+localGooLinkCfg.status changeto 5
+For hi3518ev200: now app start OK, clean caches again
+Time is invalid !
+Time is invalid !
+Setting passed time: 1503977903
+[11:38:33.599071] [1259][udpserver] new connection: 183.14.29.33:7348 in 
+[11:38:50.959063] [1259][udpserver] new connection: 183.14.29.33:7137 in 
+[11:39:07.470107] [1259][udpserver] new connection: 183.14.29.33:5535 in 
+[11:39:24.619384] [1259][udpserver] new connection: 183.14.29.33:4431 in 
+[11:39:42.190960] [1259][udpserver] new connection: 183.14.29.33:8077 in 
+[11:39:59.579697] [1259][udpserver] new connection: 183.14.29.33:7578 in 
+
+ipc login: 
+ipc login: 
+ipc login: root
+Password: 
+
+Welcome to HiLinux.
+~ # 
+~ # ifconfig 
+eth0      Link encap:Ethernet  HWaddr 26:2C:42:BD:2F:BA  
+          inet addr:192.168.1.18  Bcast:192.168.1.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:332 errors:0 dropped:5 overruns:0 frame:0
+          TX packets:41 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:18479 (18.0 KiB)  TX bytes:3716 (3.6 KiB)
+          Interrupt:12 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:20 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:20 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:1400 (1.3 KiB)  TX bytes:1400 (1.3 KiB)
+
+wwan0     Link encap:Ethernet  HWaddr 86:B8:74:60:32:74  
+          inet addr:10.24.53.91  Bcast:10.24.53.95  Mask:255.255.255.248
+          UP BROADCAST RUNNING NOARP MULTICAST  MTU:1500  Metric:1
+          RX packets:68 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:107 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:6148 (6.0 KiB)  TX bytes:8400 (8.2 KiB)
+
+~ # 
+~ # [11:40:16.009155] [1259][udpserver] new connection: 183.14.29.33:5394 in 
+
+~ # cat /etc/resolv.conf

@@ -1,0 +1,145 @@
+
+
+既想延时精准，又想频率高周期短，又想CPU不被占住不挂起，延时期间CPU可以去做别的事,或者根本不用cpu的方法实现延时目的
+方波频率要求100HZ以上,150HZ~200HZ,也即整个周期在5ms-6.6ms间,而整个方波周期对应两次正弦余弦周期，即需要完成255x2=510个点的布置，
+也就是每个点间平均要达到间隔6666us/510=13us，这其中包括执行程序的时间，我统计了下，一次执行那几句语句大约是1.5us，那所需延时就是13-1.5=11.5us
+
+
+
+目标
+1 在转动时，图像要能出来，其他功能要正常，其他进程要能如常进行
+2 不能因连续转动而重启
+3 振动越小越好，停止与开始之间，减少震动
+4 给人停顿感不明显，停顿感小
+
+
+每次连续工作时间短，意味着
+
+
+1 在转动时，图像要能出来，其他功能要正常，其他进程要能如常进行
+——不能在驱动中一直长时间udelay，之前转一圈达到1.6s之久，这1666ms期间别的进程完全得不到执行，当然CPU占满100%，并触发条件满足重启了
+
+
+2 不能因连续转动而重启
+——一个是应用层sleep时间不能太短，导致别的进程还是插不进来
+
+
+3 振动越小越好，停止与开始之间，减少震动
+
+4 给人停顿感不明显，停顿感小
+——停顿时间要短
+sleep 30ms,CPU占用仍然很高，空闲只5%上下，虽不重启，但要保险点好，一旦CPU压力大时就危险了，sleep 40ms看下，50ms时空闲有不少。但停顿太久，让用户感觉明显也不好。
+
+
+top -- h
+
+	SetPthreadName("CheckPHY");
+	SetPthreadName("AlarmTrigger");
+md_get_res
+
+	Pt_Set_ThreadName("stream_reader");
+   	ret = pthread_create(&stream_reader_pid,0,stream_reader_proc,NULL);
+    void *stream_reader_proc(void *arg)
+SINT32 mw_sys_init_api(void)
+SINT32 init_system()
+int main()
+
+
+ 305     1 root     S     346m592.8   0  0.0 {multiONVIF} /mnt/flash/Server/LINUX/hiapp
+  299     1 root     S     346m592.8   0  0.0 {HandleCliReq} /mnt/flash/Server/LINUX/hiapp
+  316     1 root     S     346m592.8   0  0.0 {AlarmProcess} /mnt/flash/Server/LINUX/hiapp
+  274     1 root     S     346m592.8   0  0.0 {ShareFD} /mnt/flash/Server/LINUX/hiapp
+  325     1 root     S     346m592.8   0  0.0 {Onvif_procQue} /mnt/flash/Server/LINUX/hiapp
+  317     1 root     S     346m592.8   0  0.0 {hk_search} /mnt/flash/Server/LINUX/hiapp
+  337     1 root     S     346m592.8   0  0.0 {Hoss_Ddns} /mnt/flash/Server/LINUX/hiapp
+  335     1 root     S     346m592.8   0  0.0 {XM_SEARCH} /mnt/flash/Server/LINUX/hiapp
+  320     1 root     S     346m592.8   0  0.0 {Onvif_procQue} /mnt/flash/Server/LINUX/hiapp
+ 2118     1 root     R     346m592.8   0  0.0 {NetReqProc} /mnt/flash/Server/LINUX/hiapp
+  271     1 root     S     346m592.8   0  0.0 {DetectEcho} /mnt/flash/Server/LINUX/hiapp
+  326     1 root     S     346m592.8   0  0.0 {Onvif_procQue} /mnt/flash/Server/LINUX/hiapp
+ 2116     1 root     R     346m592.8   0  0.0 {NetReqProc} /mnt/flash/Server/LINUX/hiapp
+  315     1 root     S     346m592.8   0  0.0 {TST_Search} /mnt/flash/Server/LINUX/hiapp
+  312     1 root     S     346m592.8   0  0.0 {Onvif_procQue} /mnt/flash/Server/LINUX/hiapp
+Mem: 50004K used, 9652K free, 0K shrd, 809424K buff, 809463K cached
+CPU:  2.5% usr 97.1% sys  0.0% nic  0.0% idle  0.0% io  0.0% irq  0.2% sirq
+Load average: 23.66 14.96 6.87 6/96 2133
+  PID  PPID USER     STAT   VSZ %VSZ CPU %CPU COMMAND
+  238     1 root     S     109m186.6   0 10.1 {auto3Ddenoise} /mnt/flash/Server/mediaserver/sdk_app
+  287     1 root     S     346m592.8   0  3.8 {MD} /mnt/flash/Server/LINUX/hiapp
+  353     1 root     R     109m186.6   0  1.0 {osd_reverse_yuv} /mnt/flash/Server/mediaserver/sdk_app
+ 1850   637 root     R      884  1.4   0  1.0 ./test_pwm 0
+  232     1 root     R     109m186.6   0  0.8 /mnt/flash/Server/mediaserver/sdk_app
+  240     1 root     R     2328  3.8   0  0.5 /mnt/flash/Server/LINUX/softwdg
+ 1920  1869 root     R     1628  2.7   0  0.4 top
+  384     1 root     R      968  1.6   0  0.4 /mnt/flash/Server/LINUX/monitor -i 5000000
+  234     1 root     R     109m186.6   0  0.2 {md_get_res} /mnt/flash/Server/mediaserver/sdk_app
+   89     1 root     S     1632  2.7   0  0.0 telnetd
+    3     2 root     RW       0  0.0   0  0.0 [ksoftirqd/0]
+  192     2 root     SW       0  0.0   0  0.0 [kworker/0:2]
+  333     1 root     R     346m592.8   0  0.0 {LIVE555} /mnt/flash/Server/LINUX/hiapp
+  291     1 root     S     346m592.8   0  0.0 {PTZsenddata} /mnt/flash/Server/LINUX/hiapp
+  290     1 root     S     346m592.8   0  0.0 {Status_Check} /mnt/flash/Server/LINUX/hiapp
+  289     1 root     S     346m592.8   0  0.0 {CheckPHY} /mnt/flash/Server/LINUX/hiapp
+  302     1 root     S     346m592.8   0  0.0 {Onvif_MSGmng} /mnt/flash/Server/LINUX/hiapp
+  275     1 root     S     346m592.8   0  0.0 {MSGmange} /mnt/flash/Server/LINUX/hiapp
+  268     1 root     S     346m592.8   0  0.0 {AlarmTrigger} /mnt/flash/Server/LINUX/hiapp
+  288     1 root     S     346m592.8   0  0.0 {ARP} /mnt/flash/Server/LINUX/hiapp
+  251     1 root     S     346m592.8   0  0.0 /mnt/flash/Server/LINUX/hiapp
+  292     1 root     S     346m592.8   0  0.0 {TH_IR} /mnt/flash/Server/LINUX/hiapp
+  267     1 root     S     346m592.8   0  0.0 {ProAlarm} /mnt/flash/Server/LINUX/hiapp
+  276     1 root     S     346m592.8   0  0.0 {MSGmange} /mnt/flash/Server/LINUX/hiapp
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+
+mount -t nfs -o nolock 10.0.39.221:/home/wigewige/ /mnt/nfs
+
+cp /mnt/nfs/share/develop/Hi3516CV300_SDK_V1.0.0.3/drv/extdrv/pwm/hi_pwm.ko /mnt/flash/
+
+cp /mnt/nfs/share/develop/Hi3516CV300_SDK_V1.0.0.3/drv/extdrv/pwm/test_pwm /mnt/flash/
+
+
+cd /mnt/flash/
+
+
+./test.sh
+rmmod  hi3516cv300_pwm
+insmod hi_pwm.ko
+./test_pwm 1
+
+
+rmmod hi_pwm.ko 
+insmod hi_pwm.ko
+./test_pwm 1
+
+
+
+
+
+low  800us
+low  650us
+high 650us
+
+zhouqi 1300us
+zhouqi 1500us
+
+256x1us + x = 650us
+x = 400 us
+400/256 = 1.56us
+
+800+
+
+
+5000us
+5000-800=4200
+4200/256=
+
+
+200HZ --- 5ms  --- 5000us
+512*xus + 800 = 5000us
+x = 4200/512=
+
+150HZ   6666US
+X = (6666-800)/512=11 us

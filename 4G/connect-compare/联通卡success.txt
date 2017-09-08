@@ -1,0 +1,94 @@
+ 
+Dev wwan0 has no IP, start quectel-CM!
+killall: quectel-CM: no process killed
+[08-28_16:34:58:837] Quectel_Linux_ConnectManager_SR01A01V23
+[08-28_16:34:58:838] /mnt/flash/Server/tools/quectel-CM profile[1] = 3gnet///0, pincode = (null)
+[08-28_16:34:58:840] Find qmichannel = /dev/cdc-wdm0
+[08-28_16:34:58:840] Find usbnet_adapter = wwan0
+[08-28_16:34:58:870] cdc_wdm_fd = 38
+[08-28_16:34:58:942] Get clientWDS = 19
+[08-28_16:34:58:975] Get clientDMS = 1
+[08-28_16:34:59:006] Get clientNAS = 3
+[08-28_16:34:59:038] Get clientUIM = 1
+[08-28_16:34:59:070] Get clientWDA = 1
+[08-28_16:34:59:106] requestBaseBandVersion EC20CFDR02A09M4G  1  [Nov 30 2016 04:00:00]
+[08-28_16:34:59:166] requestGetSIMStatus SIMStatus: SIM_READY
+[08-28_16:34:59:166] requestSetProfile[1] 3gnet///0
+[08-28_16:34:59:230] requestGetProfile[1] 3gnet///0
+[08-28_16:34:59:263] requestRegistrationState2 MCC: 460, MNC: 1, PS: Attached, DataCap: LTE
+[08-28_16:34:59:295] requestQueryDataCall ConnectionStatus: DISCONNECTED
+[08-28_16:34:59:358] requestRegistrationState2 MCC: 460, MNC: 1, PS: Attached, DataCap: LTE
+[08-28_16:34:59:389] requestSetupDataCall WdsConnectionIPv4Handle: 0x8793fcb0
+[08-28_16:34:59:453] requestQueryDataCall ConnectionStatus: CONNECTED
+[08-28_16:34:59:665] deleting routers
+route: SIOCDELRT: No such process
+[08-28_16:34:59:701] adding dns 120.80.80.80
+[08-28_16:34:59:707] adding dns 221.5.88.88
+[08-28_16:34:59:711] udhcp client (v0.9.8) started
+[08-28_16:34:59:712] Sending discover...
+[08-28_16:34:59:713] Sending select for 10.16.210.219...
+[08-28_16:34:59:713] Lease of 10.16.210.219 obtained, lease time 7200
+wigewige ntp sync now ! Mobile_Connect,983
+ntp_receive selcet timeout
+ntp_receive selcet timeout
+alarm_add_motion: STOP
+cur log num 948
+log_notice, message 949 is Get a motion alarm end.
+
+11 t=1503909319 
+zoneValue=8.000000 
+daylight_saving=0 
+22  t=1503938119 
+33 t=1503938119 
+[16:35:19.513170] [1208][MD] InsertAlarmList:666: ALARM_ERROR_LIST_FULL 666, ret=0
+
+glnk_push_alarm ret = 0
+alarm_add_motion: START
+ALARM TO FTP ftp_jpegnum 3
+cur log num 949
+log_notice, message 950 is Get a motion alarm begin.
+
+~ # ifconfig 
+eth0      Link encap:Ethernet  HWaddr F6:25:1A:A1:46:B8  
+          inet addr:10.0.39.231  Bcast:10.0.39.255  Mask:255.255.248.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:10826 errors:0 dropped:4 overruns:0 frame:0
+          TX packets:7295 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:519579 (507.4 KiB)  TX bytes:28964883 (27.6 MiB)
+          Interrupt:12 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:324 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:324 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:22680 (22.1 KiB)  TX bytes:22680 (22.1 KiB)
+
+wwan0     Link encap:Ethernet  HWaddr B2:24:D8:93:19:29  
+          inet addr:10.16.210.219  Bcast:10.16.210.223  Mask:255.255.255.248
+          UP BROADCAST RUNNING NOARP MULTICAST  MTU:1500  Metric:1
+          RX packets:4 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:21 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:1224 (1.1 KiB)  TX bytes:3524 (3.4 KiB)
+
+~ # alarm_add_motion: STOP
+cur log num 950
+log_notice, message 951 is Get a motion alarm end.
+
+11 t=1503909330 
+zoneValue=8.000000 
+daylight_saving=0 
+22  t=1503938130 
+33 t=1503938130 
+[16:35:30.573988] [1208][MD] InsertAlarmList:666: ALARM_ERROR_LIST_FULL 666, ret=0
+
+glnk_push_alarm ret = 0
+alarm_add_motion: START
+cur log num 951
+log_notice, message 952 is Get a motion alarm begin.
+
+ALARM TO FTP ftp_jpegnum 3
+

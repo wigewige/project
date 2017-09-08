@@ -1,0 +1,114 @@
+ 
+Dev wwan0 has no IP, start quectel-CM!
+killall: quectel-CM: no process killed
+[08-28_16:40:11:594] Quectel_Linux_ConnectManager_SR01A01V23
+[08-28_16:40:11:595] /mnt/flash/Server/tools/quectel-CM profile[1] = 3gnet///0, pincode = (null)
+[08-28_16:40:11:596] Find qmichannel = /dev/cdc-wdm0
+[08-28_16:40:11:597] Find usbnet_adapter = wwan0
+[08-28_16:40:11:644] cdc_wdm_fd = 38
+[08-28_16:40:11:745] Get clientWDS = 19
+[08-28_16:40:11:777] Get clientDMS = 1
+[08-28_16:40:11:809] Get clientNAS = 3
+[08-28_16:40:11:841] Get clientUIM = 1
+[08-28_16:40:11:873] Get clientWDA = 1
+[08-28_16:40:11:905] requestBaseBandVersion EC20CFDR02A09M4G  1  [Nov 30 2016 04:00:00]
+[08-28_16:40:11:969] requestGetSIMStatus SIMStatus: SIM_READY
+[08-28_16:40:11:969] requestSetProfile[1] 3gnet///0
+[08-28_16:40:12:033] requestGetProfile[1] 3gnet///0
+[08-28_16:40:12:065] requestRegistrationState2 MCC: 460, MNC: 0, PS: Attached, DataCap: LTE
+[08-28_16:40:12:097] requestQueryDataCall ConnectionStatus: DISCONNECTED
+[08-28_16:40:12:161] requestRegistrationState2 MCC: 460, MNC: 0, PS: Attached, DataCap: LTE
+[08-28_16:40:12:513] requestSetupDataCall WdsConnectionIPv4Handle: 0x87228d10
+Dev wwan0 has no IP, start quectel-CM!
+[08-28_16:40:12:577] requestQueryDataCall ConnectionStatus: CONNECTED
+[08-28_16:40:12:724] requestDeactivateDefaultPDP err = 0
+[08-28_16:40:12:789] Quectel_Linux_ConnectManager_SR01A01V23
+[08-28_16:40:12:790] /mnt/flash/Server/tools/quectel-CM profile[1] = 3gnet///0, pincode = (null)
+[08-28_16:40:12:793] Find qmichannel = /dev/cdc-wdm0
+[08-28_16:40:12:794] Find usbnet_adapter = wwan0
+[08-28_16:40:12:830] /proc/1447/fd/38 -> /dev/cdc-wdm0
+[08-28_16:40:12:833] /proc/1447/exe -> /mnt/flash/Server/tools/quectel-CM
+[08-28_16:40:12:836] QmiWwanThread exit
+[08-28_16:40:12:839] main exit
+Dev wwan0 has no IP, start quectel-CM!
+[08-28_16:40:13:897] cdc_wdm_fd = 38
+[08-28_16:40:13:939] Quectel_Linux_ConnectManager_SR01A01V23
+[08-28_16:40:13:940] /mnt/flash/Server/tools/quectel-CM profile[1] = 3gnet///0, pincode = (null)
+[08-28_16:40:13:948] Find qmichannel = /dev/cdc-wdm0
+[08-28_16:40:13:949] Find usbnet_adapter = wwan0
+[08-28_16:40:13:979] /proc/1456/fd/38 -> /dev/cdc-wdm0
+[08-28_16:40:13:980] /proc/1456/exe -> /mnt/flash/Server/tools/quectel-CM
+[08-28_16:40:14:017] Get clientWDS = 19
+[08-28_16:40:14:049] Get clientDMS = 1
+[08-28_16:40:14:082] Get clientNAS = 3
+[08-28_16:40:14:113] Get clientUIM = 1
+[08-28_16:40:14:145] Get clientWDA = 1
+[08-28_16:40:14:177] requestBaseBandVersion EC20CFDR02A09M4G  1  [Nov 30 2016 04:00:00]
+[08-28_16:40:14:242] requestGetSIMStatus SIMStatus: SIM_READY
+[08-28_16:40:14:242] requestSetProfile[1] 3gnet///0
+[08-28_16:40:14:306] requestGetProfile[1] 3gnet///0
+[08-28_16:40:14:337] requestRegistrationState2 MCC: 460, MNC: 0, PS: Attached, DataCap: LTE
+[08-28_16:40:14:369] requestQueryDataCall ConnectionStatus: DISCONNECTED
+[08-28_16:40:14:535] QmiWwanThread exit
+[08-28_16:40:14:538] main exit
+wigewige, err! quectel-CM connect net fail, resolve resolv.conf, Mobile_Connect,989
+wigewige connect back up file, Mobile_Connect,996
+[08-28_16:40:16:003] cdc_wdm_fd = 38
+[08-28_16:40:16:097] Get clientWDS = 19
+[08-28_16:40:16:129] Get clientDMS = 1
+[08-28_16:40:16:173] Get clientNAS = 3
+[08-28_16:40:16:194] Get clientUIM = 1
+[08-28_16:40:16:226] Get clientWDA = 1
+[08-28_16:40:16:257] requestBaseBandVersion EC20CFDR02A09M4G  1  [Nov 30 2016 04:00:00]
+[08-28_16:40:16:322] requestGetSIMStatus SIMStatus: SIM_READY
+[08-28_16:40:16:322] requestSetProfile[1] 3gnet///0
+[08-28_16:40:16:385] requestGetProfile[1] 3gnet///0
+alarm_add_motion: STOP
+[08-28_16:40:16:418] requestRegistrationState2 MCC: 460, MNC: 0, PS: Attached, DataCap: LTE
+[08-28_16:40:16:449] requestQueryDataCall ConnectionStatus: DISCONNECTED
+cur log num 993
+log_notice, message 994 is Get a motion alarm end.
+
+[08-28_16:40:16:513] requestRegistrationState2 MCC: 460, MNC: 0, PS: Attached, DataCap: LTE
+[08-28_16:40:16:897] requestSetupDataCall WdsConnectionIPv4Handle: 0x87228d10
+[08-28_16:40:16:962] requestQueryDataCall ConnectionStatus: CONNECTED
+[08-28_16:40:17:100] deleting routers
+route: SIOCDELRT: No such process
+[08-28_16:40:17:135] adding dns 221.179.38.7
+[08-28_16:40:17:136] adding dns 120.196.165.7
+[08-28_16:40:17:141] udhcp client (v0.9.8) started
+[08-28_16:40:17:143] Sending discover...
+[08-28_16:40:17:143] Sending select for 10.16.41.144...
+[08-28_16:40:17:144] Lease of 10.16.41.144 obtained, lease time 7200
+
+~ # 
+~ # ifconfig 
+eth0      Link encap:Ethernet  HWaddr 82:62:BA:D3:D7:4F  
+          inet addr:10.0.39.231  Bcast:10.0.39.255  Mask:255.255.248.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:10873 errors:0 dropped:9 overruns:0 frame:0
+          TX packets:7992 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:525328 (513.0 KiB)  TX bytes:28649534 (27.3 MiB)
+          Interrupt:12 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:476 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:476 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:33320 (32.5 KiB)  TX bytes:33320 (32.5 KiB)
+
+wwan0     Link encap:Ethernet  HWaddr 72:13:C4:23:C6:38  
+          inet addr:10.16.41.144  Bcast:10.16.41.159  Mask:255.255.255.224
+          UP BROADCAST RUNNING NOARP MULTICAST  MTU:1500  Metric:1
+          RX packets:4 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:9 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:1224 (1.1 KiB)  TX bytes:2804 (2.7 KiB)
+
+~ # 
+~ # 11 t=1503909621 
+zoneValue=8.000000 
+daylight_saving=0 

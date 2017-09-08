@@ -1,0 +1,149 @@
+ 
+wigewige signal MODE temp=9, Mobile_Response_Analysis,1310
+wigewige signal strength temp=9, Mobile_Response_Analysis,1324
+wigewige signal strength temp=9,MobileINFO.registeredNet=4, Mobile_Response_Analysis,1332
+Dev wwan0 has no IP, start quectel-CM!
+killall: quectel-CM: no process killed
+[08-28_18:02:55:986] Quectel_Linux_ConnectManager_SR01A01V23
+[08-28_18:02:55:987] /mnt/flash/Server/tools/quectel-CM profile[1] = 3gnet///0, pincode = (null)
+[08-28_18:02:55:989] Find qmichannel = /dev/cdc-wdm0
+[08-28_18:02:55:989] Find usbnet_adapter = wwan0
+[08-28_18:02:56:019] cdc_wdm_fd = 39
+[08-28_18:02:56:104] Get clientWDS = 19
+[08-28_18:02:56:135] Get clientDMS = 1
+[08-28_18:02:56:168] Get clientNAS = 3
+[08-28_18:02:56:199] Get clientUIM = 1
+[08-28_18:02:56:232] Get clientWDA = 1
+[08-28_18:02:56:263] requestBaseBandVersion EC20CFDR02A09M4G  1  [Nov 30 2016 04:00:00]
+[08-28_18:02:56:328] requestGetSIMStatus SIMStatus: SIM_READY
+[08-28_18:02:56:328] requestSetProfile[1] 3gnet///0
+[08-28_18:02:56:423] requestGetProfile[1] 3gnet///0
+[08-28_18:02:56:455] requestRegistrationState2 MCC: 460, MNC: 0, PS: Attached, DataCap: LTE
+[08-28_18:02:56:488] requestQueryDataCall ConnectionStatus: DISCONNECTED
+[08-28_18:02:56:552] requestRegistrationState2 MCC: 460, MNC: 0, PS: Attached, DataCap: LTE
+[08-28_18:02:56:935] requestSetupDataCall WdsConnectionIPv4Handle: 0x871f1f50
+Dev wwan0 has no IP, start quectel-CM!
+[08-28_18:02:56:999] requestQueryDataCall ConnectionStatus: CONNECTED
+[08-28_18:02:57:053] requestDeactivateDefaultPDP err = 0
+[08-28_18:02:57:217] Quectel_Linux_ConnectManager_SR01A01V23
+[08-28_18:02:57:218] /mnt/flash/Server/tools/quectel-CM profile[1] = 3gnet///0, pincode = (null)
+[08-28_18:02:57:220] Find qmichannel = /dev/cdc-wdm0
+[08-28_18:02:57:220] Find usbnet_adapter = wwan0
+[08-28_18:02:57:294] /proc/1601/fd/39 -> /dev/cdc-wdm0
+[08-28_18:02:57:295] /proc/1601/exe -> /mnt/flash/Server/tools/quectel-CM
+[08-28_18:02:57:297] QmiWwanThread exit
+[08-28_18:02:57:418] main exit
+Dev wwan0 has no IP, start quectel-CM!
+[08-28_18:02:58:347] Quectel_Linux_ConnectManager_SR01A01V23
+[08-28_18:02:58:348] /mnt/flash/Server/tools/quectel-CM profile[1] = 3gnet///0, pincode = (null)
+[08-28_18:02:58:349] Find qmichannel = /dev/cdc-wdm0
+[08-28_18:02:58:356] Find usbnet_adapter = wwan0
+[08-28_18:02:58:385] cdc_wdm_fd = 39
+[08-28_18:02:58:504] Get clientWDS = 19
+[08-28_18:02:58:535] Get clientDMS = 1
+[08-28_18:02:58:567] Get clientNAS = 3
+[08-28_18:02:58:599] Get clientUIM = 1
+[08-28_18:02:58:632] Get clientWDA = 1
+[08-28_18:02:58:663] requestBaseBandVersion EC20CFDR02A09M4G  1  [Nov 30 2016 04:00:00]
+[08-28_18:02:58:728] requestGetSIMStatus SIMStatus: SIM_READY
+[08-28_18:02:58:728] requestSetProfile[1] 3gnet///0
+[08-28_18:02:58:793] requestGetProfile[1] 3gnet///0
+[08-28_18:02:58:823] requestRegistrationState2 MCC: 460, MNC: 0, PS: Attached, DataCap: LTE
+[08-28_18:02:58:855] requestQueryDataCall ConnectionStatus: DISCONNECTED
+[08-28_18:02:58:919] requestRegistrationState2 MCC: 460, MNC: 0, PS: Attached, DataCap: LTE
+[08-28_18:02:59:176] requestSetupDataCall WdsConnectionIPv4Handle: 0x871f1f50
+[08-28_18:02:59:240] requestQueryDataCall ConnectionStatus: CONNECTED
+[08-28_18:02:59:319] cdc_wdm_fd = 39
+wigewige, err! quectel-CM connect net fail, resolve resolv.conf, Mobile_Connect,989
+[08-28_18:02:59:400] Get clientWDS = 19
+[08-28_18:02:59:435] Get clientDMS = 1
+[08-28_18:02:59:464] Get clientNAS = 3
+wigewige connect back up file, Mobile_Connect,996
+[08-28_18:02:59:496] Get clientUIM = 1
+[08-28_18:02:59:560] Get clientWDA = 1
+11 t=1503914581 
+zoneValue=8.000000 
+daylight_saving=0 
+22  t=1503943381 
+33 t=1503943381 
+[18:03:01.213220] [1208][MD] InsertAlarmList:666: ALARM_ERROR_LIST_FULL 666, ret=0
+
+glnk_push_alarm ret = 0
+alarm_add_motion: START
+cur log num 1041
+log_notice, message 1042 is Get a motion alarm begin.
+
+ALARM TO FTP ftp_jpegnum 3
+
+~ # 
+~ # ifconfig 
+eth0      Link encap:Ethernet  HWaddr A2:05:A2:94:57:1E  
+          inet addr:10.0.39.231  Bcast:10.0.39.255  Mask:255.255.248.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:9459 errors:0 dropped:4 overruns:0 frame:0
+          TX packets:6839 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:456070 (445.3 KiB)  TX bytes:24842930 (23.6 MiB)
+          Interrupt:12 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:328 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:328 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:22960 (22.4 KiB)  TX bytes:22960 (22.4 KiB)
+
+wwan0     Link encap:Ethernet  HWaddr DA:CF:22:38:25:3C  
+          UP BROADCAST RUNNING NOARP MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:3 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:1728 (1.6 KiB)
+
+~ # 
+~ # ifconfig 
+eth0      Link encap:Ethernet  HWaddr A2:05:A2:94:57:1E  
+          inet addr:10.0.39.231  Bcast:10.0.39.255  Mask:255.255.248.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:9576 errors:0 dropped:4 overruns:0 frame:0
+          TX packets:6940 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:461470 (450.6 KiB)  TX bytes:25173425 (24.0 MiB)
+          Interrupt:12 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:332 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:332 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:23240 (22.6 KiB)  TX bytes:23240 (22.6 KiB)
+
+wwan0     Link encap:Ethernet  HWaddr DA:CF:22:38:25:3C  
+          UP BROADCAST RUNNING NOARP MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:3 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:1728 (1.6 KiB)
+
+~ # alarm_add_motion: STOP
+cur log num 1042
+log_notice, message 1043 is Get a motion alarm end.
+
+
+~ # [08-28_18:03:07:385] udhcp client (v0.9.8) started
+[08-28_18:03:07:385] Sending discover...
+[08-28_18:03:07:386] Sending discover...
+[08-28_18:03:07:386] Sending discover...
+[08-28_18:03:07:386] No lease, failing.
+
+~ # 11 t=1503914588 
+zoneValue=8.000000 
+daylight_saving=0 
+22  t=1503943388 
+33 t=1503943388 
+[18:03:08.883083] [1208][MD] InsertAlarmList:666: ALARM_ERROR_LIST_FULL 666, ret=0
+
+glnk_push_alarm ret = 0
+alarm_add_motion: START
