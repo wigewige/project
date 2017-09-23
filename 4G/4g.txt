@@ -1,12 +1,83 @@
 
 
 
+
 ——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
 
 4G 生产工具update升级不成功
+定位到是因为没有flashcp命令
 
 write squashfs to flash
 /bin/sh: flashcp: not found
+后继续定位是由于Compress/Server/script/autorun.sh脚本一句话写错了，mount bind了错误的源目录。
+
+原来还有个autorun.sh脚本，原来是在这里搬的，怪不得在auto.sh和rootfs_hi3518ev200/Makefile下怎么搜和找都找不到，怎么找得到呢。最后通过grep "usr/sbin" * -r 才找出来了。以后还是用命令找，不要凭经验认为找，靠谱。
+Compress/Server/script/autorun.sh
+
+if [ -d /mnt/flash/Server/usr/sbin ];then
+    mkdir -p /tmp/usr
+    cp -rf /usr/sbin /tmp/usr
+    cp -rf /mnt/flash/Server/usr/sbin /tmp/usr
+    #mount --bind /mnt/flash/Server/usr/sbin /usr/sbin
+    mount --bind /tmp/usr /usr/sbin
+fi
+
+
+正常以后是这样
+
+~ # ls /tmp/usr/sbin/ -l
+total 468
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 brctl -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 chpasswd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 chroot -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 crond -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 dhcprelay -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 dnsd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 fakeidentd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 fbset -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 flash_eraseall -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 flash_lock -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 flash_unlock -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 flashcp -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 ftpd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 httpd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 inetd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 loadfont -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 lpd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 nanddump -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 nandwrite -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 nbd-client -> ../../bin/busybox
+-rwxr-xr-x    1 root     root           740 Jan  1  1970 nfsroot
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 ntpd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 popmaildir -> ../../bin/busybox
+-rwxr-xr-x    1 root     root        261184 Jan  1  1970 pppd
+-rwxr-xr-x    1 root     root         78984 Jan  1  1970 pppoe
+-rwxr-xr-x    1 root     root          8959 Jan  1  1970 pppoe-connect
+-rwxr-xr-x    1 root     root         26684 Jan  1  1970 pppoe-relay
+-rwxr-xr-x    1 root     root         43464 Jan  1  1970 pppoe-server
+-rwxr-xr-x    1 root     root          9603 Jan  1  1970 pppoe-setup
+-rwxr-xr-x    1 root     root         14320 Jan  1  1970 pppoe-sniff
+-rwxr-xr-x    1 root     root          5603 Jan  1  1970 pppoe-start
+-rwxr-xr-x    1 root     root          2165 Jan  1  1970 pppoe-status
+-rwxr-xr-x    1 root     root          2323 Jan  1  1970 pppoe-stop
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 rdate -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 rdev -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 readprofile -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 sendmail -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 setfont -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 setlogcons -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 svlogd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 telnetd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 ubiattach -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 ubidetach -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 ubimkvol -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 ubirmvol -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 ubirsvol -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 ubiupdatevol -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan  1  1970 udhcpd -> ../../bin/busybox
+
+
+
 
 
 
