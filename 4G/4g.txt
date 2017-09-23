@@ -3,6 +3,131 @@
 
 ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª·Ö¸îÏß¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
 
+4G Éú²ú¹¤¾ßupdateÉý¼¶²»³É¹¦
+
+write squashfs to flash
+/bin/sh: flashcp: not found
+
+
+
+/usr/sbin # ls -l flashcp 
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 flashcp -> ../../bin/busybox
+/usr/sbin # 
+/usr/sbin # 
+
+
+
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 fakeidentd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 fbset -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 flash_eraseall -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 flash_lock -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 flash_unlock -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 flashcp -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 ftpd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 httpd -> ../../bin/busybox
+
+
+/usr/sbin # fl
+flash_eraseall  flash_lock      flash_unlock    flashcp         flock
+
+
+/usr/sbin # which flashcp 
+/usr/sbin/flashcp
+/usr/sbin # 
+
+
+/usr/sbin # 
+/usr/sbin # which flashcp 
+/usr/sbin/flashcp
+/usr/sbin # ls ../bin/flock -l
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 ../bin/flock -> ../../bin/busybox
+/usr/sbin # 
+
+
+
+
+
+/usr
+/usr # 
+/usr # cd sbin/
+/usr/sbin # 
+/usr/sbin # 
+/usr/sbin # ls -l
+total 445
+-rwxrwxrwx    1 root     root        261184 Apr 29  2014 pppd
+-rwxrwxrwx    1 root     root         78984 Apr 29  2014 pppoe
+-rwxrwxrwx    1 root     root          8959 Apr 29  2014 pppoe-connect
+-rwxrwxrwx    1 root     root         26684 Apr 29  2014 pppoe-relay
+-rwxrwxrwx    1 root     root         43464 Apr 29  2014 pppoe-server
+-rwxrwxrwx    1 root     root          9603 Apr 29  2014 pppoe-setup
+-rwxrwxrwx    1 root     root         14320 Apr 29  2014 pppoe-sniff
+-rwxrwxrwx    1 root     root          5603 Apr 29  2014 pppoe-start
+-rwxrwxrwx    1 root     root          2165 Apr 29  2014 pppoe-status
+-rwxrwxrwx    1 root     root          2323 Apr 29  2014 pppoe-stop
+/usr/sbin # 
+/usr/sbin # 
+/usr/sbin # 
+/usr/sbin # flock 
+flock: applet not found
+
+
+
+/usr/sbin # ls -l
+total 20
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 brctl -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 chpasswd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 chroot -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 crond -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 dhcprelay -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 dnsd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 fakeidentd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 fbset -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 flash_eraseall -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 flash_lock -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 flash_unlock -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 flashcp -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 ftpd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 httpd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 inetd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 loadfont -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 lpd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 nanddump -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 nandwrite -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 nbd-client -> ../../bin/busybox
+-rwxrwxrwx    1 root     root           740 May 21  2008 nfsroot
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 ntpd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 popmaildir -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 rdate -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 rdev -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 readprofile -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 sendmail -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 setfont -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 setlogcons -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 svlogd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 telnetd -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 ubiattach -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 ubidetach -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 ubimkvol -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 ubirmvol -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 ubirsvol -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 ubiupdatevol -> ../../bin/busybox
+lrwxrwxrwx    1 root     root            17 Jan 29  2016 udhcpd -> ../../bin/busybox
+
+
+
+/usr/sbin # 
+/usr/sbin # fl
+flash_eraseall  flash_lock      flash_unlock    flashcp         flock
+/usr/sbin # fl
+flash_eraseall  flash_lock      flash_unlock    flashcp         flock
+/usr/sbin # fl
+
+
+
+
+
+¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª·Ö¸îÏß¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
+
 Ôö¼ÓvbusÓ²¼þ½ÓÏßºó£¬rebootÖØÆôÈÔÈ»¿ÉÒÔpingÍ¨baidu 114
 2´Î¶Ï¿ªÍøÏß£¬Á¬ÉÏÍøÏß£¬4G¶¼ÈÔÈ»ÄÜping Í¨baidu 114£¬ÏÔÊ¾Õý³£¡£²»¹ýÒ²Åöµ½¹ýÊ²Ã´¶¼ping²»Í¨µÄÇé¿ö
 

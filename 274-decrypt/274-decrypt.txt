@@ -1,0 +1,178 @@
+
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+typedef  struct tagAUDIO_INFO
+{
+	unsigned char  m_FrameType;     //֡����
+	unsigned char  m_AVType;		//����Ƶ����
+	unsigned char  m_EncoderType;   //��������
+	unsigned char  m_Channels;		//ͨ������
+	short   m_Smaples;       //������
+	short   m_BitCount;      //����λ��
+	int     m_FrameID;       //֡ID
+	int     m_FrameSize;      //֡��С
+	int     m_TimeStamp;     //ʱ���
+	short   m_ErrorCode;		//�����
+	short   m_ExtLength;		//��չ����	
+}tagAUDIO_INFO;
+
+
+
+typedef struct tagInfAFrameHeader
+{
+	UINT8	m_FrameType;
+	UINT8	m_AVType;
+	UINT8	m_EncoderType;	
+	UINT8	m_Channels;	
+	SINT16	m_SampleRate;
+	SINT16	m_BitCount;	
+	UINT32	m_FrameID;
+	UINT32	m_FrameSize;
+	UINT32	m_TimeStamp;	
+	SINT16	m_ErrorCode;	
+	SINT16	m_ExtLength;
+}AencAudioHeader;
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+wigewige Thread_AV_Send,1869
+wigewige m_ENCType=1,sendptr[1]=2,sendptr[2]=1,Thread_AV_Send,1871
+wigewige m_AVType=3,m_ENCType=1,Thread_AV_Send, 1901
+wigewige m_AVType=3,m_ENCType=1,sendlen=516,cnt=516,->m_AVType=2,Thread_AV_Send, 2039
+wigewige tagvideoinfo->m_AVType=1,tagvideoinfo->m_EncoderType=4,Thread_AV_Send,1851
+wigewige Thread_AV_Send,1869
+wigewige m_ENCType=4,sendptr[1]=1,sendptr[2]=4,Thread_AV_Send,1871
+wigewige m_AVType=3,m_ENCType=4,Thread_AV_Send, 1901
+wigewige m_AVType=3,m_ENCType=4,sendlen=32696,cnt=32696,->m_AVType=1,Thread_AV_Send, 2039
+wigewige tagvideoinfo->m_AVType=2,tagvideoinfo->m_EncoderType=1,Thread_AV_Send,1851
+wigewige Thread_AV_Send,1869
+wigewige m_ENCType=1,sendptr[1]=2,sendptr[2]=1,Thread_AV_Send,1871
+wigewige m_AVType=3,m_ENCType=1,Thread_AV_Send, 1901
+wigewige m_AVType=3,m_ENCType=1,sendlen=516,cnt=516,->m_AVType=2,Thread_AV_Send, 2039
+wigewige tagvideoinfo->m_AVType=1,tagvideoinfo->m_EncoderType=4,Thread_AV_Send,1851
+wigewige Thread_AV_Send,1869
+wigewige m_ENCType=4,sendptr[1]=1,sendptr[2]=4,Thread_AV_Send,1871
+wigewige m_AVType=3,m_ENCType=4,Thread_AV_Send, 1901
+wigewige m_AVType=3,m_ENCType=4,sendlen=32195,cnt=32195,->m_AVType=1,Thread_AV_Send, 2039
+wigewige tagvideoinfo->m_AVType=1,tagvideoinfo->m_EncoderType=4,Thread_AV_Send,1851
+wigewige Thread_AV_Send,1869
+wigewige m_ENCType=4,sendptr[1]=1,sendptr[2]=4,Thread_AV_Send,1871
+wigewige m_AVType=3,m_ENCType=4,Thread_AV_Send, 1901
+wigewige m_AVType=3,m_ENCType=4,sendlen=31628,cnt=31628,->m_AVType=1,Thread_AV_Send, 2039
+wigewige tagvideoinfo->m_AVType=2,tagvideoinfo->m_EncoderType=1,Thread_AV_Send,1851
+wigewige Thread_AV_Send,1869
+wigewige m_ENCType=1,sendptr[1]=2,sendptr[2]=1,Thread_AV_Send,1871
+wigewige m_AVType=3,m_ENCType=1,Thread_AV_Send, 1901
+wigewige m_AVType=3,m_ENCType=1,sendlen=516,cnt=516,->m_AVType=2,Thread_AV_Send, 2039
+wigewige tagvideoinfo->m_AVType=1,tagvideoinfo->m_EncoderType=4,Thread_AV_Send,1851
+wigewige Thread_AV_Send,1869
+wigewige m_ENCType=4,sendptr[1]=1,sendptr[2]=4,Thread_AV_Send,1871
+wigewige m_AVType=3,m_ENCType=4,Thread_AV_Send, 1901
+wigewige m_AVType=3,m_ENCType=4,sendlen=31713,cnt=31713,->m_AVType=1,Thread_AV_Send, 2039
+wigewige tagvideoinfo->m_AVType=2,tagvideoinfo->m_EncoderType=1,Thread_AV_Send,1851
+wigewige Thread_AV_Send,1869
+wigewige m_ENCType=1,sendptr[1]=2,sendptr[2]=1,Thread_AV_Send,1871
+wigewige m_AVType=3,m_ENCType=1,Thread_AV_Send, 1901
+wigewige m_AVType=3,m_ENCType=1,sendlen=516,cnt=516,->m_AVType=2,Thread_AV_Send, 2039
+Thread_AV_Send client 32 recv ret 0, error 0 Success --clien close
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+VLC
+
+rtsp://ip/1/h264minor
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+C_MICBIAS0
+V22
+AC_IN1R/AC_IN1_N
+
+Y23
+AC_IN1L/AC_IN1_P
+Y24
+AC_IN0R/AC_IN0_N
+V23
+AC_IN0L/AC_IN0_P
+
+
+
+
+AC_MICBIAS0
+V22
+AC_IN1R/AC_IN1_N
+Y23
+AC_IN1L/AC_IN1_P
+Y24
+AC_IN0R/AC_IN0_N
+V23
+AC_IN0L/AC_IN0_P
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+	HI_U32 volume = 0x33404004;//20db
+114f4f04
+
+/proc/umap # himm 0x120300b8 0x114f4f04
+
+0x0：IN0L（正端）/IN0R（负端）差分输入；
+0x1：IN0L 单端输入；
+0x2：IN0L（正端）/IN1L（负端）差分输入；
+0x3：IN1L 单端输入；
+0x4：IN1L（正端）/IN1R（负端）差分输入；
+其他：保留。
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+-----VENC CHN ATTR 1-----------------------------------------------------------
+      ID   Width  Height  Type  ByFrame    Sequence   LeftBytes     LeftFrm  CurPacks   GopMode  Prio
+       0    3840    2160    96        Y       23677           0           0         1   NormalP     0
+       1    1280     720    96        Y       23677           0           0         1   NormalP     0
+       2    1280     720  1002        Y         941           0           0         2   NormalP     0
+
+-----VENC CHN ATTR 2-----------------------------------------------------------
+
+
+
+/proc/umap # 
+/proc/umap # cat venc 
+
+[VENC] Version: [Hi3519V101_MPP_V1.0.2.0 B050 Release], Build Time[Dec  1 2016, 10:28:17]
+-----MODULE PARAM--------------------------------------------------------------
+    VencBufferCache   FrameBufRecycle
+                  0                 0
+
+-----VENC CHN ATTR 1-----------------------------------------------------------
+      ID   Width  Height  Type  ByFrame    Sequence   LeftBytes     LeftFrm  CurPacks   GopMode  Prio
+       0    3840    2160   265        Y         254           0           0         1   NormalP     0
+       1    1280     720    96        Y       32460         524           1         1   NormalP     0
+       2    1280     720  1002        Y        1292           0           0         2   NormalP     0
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+先升级最新程序，过下还剩几个问题没解决
+

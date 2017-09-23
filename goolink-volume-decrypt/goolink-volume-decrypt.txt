@@ -1,0 +1,92 @@
+
+
+
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+音量1     值0
+音量10    值9
+
+对应
+没反应
+
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+/*	配置录像参数的回调函数
+ *  app -->device
+ *  pJsonData：		APP发送过来的json数据（字符串形式）
+ *  				VideoRecordOpt
+					{
+						"CallBack":false //回调函数失败		// If this object exist, there is a callback error.
+						"VideoRecClose": true, 				//录像是否关闭
+						"VideoRecordList":[{...}]     		//这是一个数组，多少个通道需要设置就有多少个Class VideoRecordList
+					}
+
+					VideoRecordList
+					{
+						"Channel": uint8_t,					//通道号			// 1 - 255;
+						"ChannelOpen": boolean, 			//该通道是否支持录像				// 0 : close ; 1 : open;
+						"StreamLvl": [int8_t],  			//码流的等级(主次)				// 0: main stream; 1: substream； 2: subsubstream;
+						"ArmTime":[{...}]					// The same as MotionDetectOptList;
+					}
+ *  JsonDataLen：	pJsonData的长度
+ *  pResultData：	回复给app的json数据
+ *  				VideoRecordRsp
+					{
+						"Channel":int8_t//通道号
+						"ReSuc":true   //设置的返回的结果
+						///////////// or exp
+						"ReSuc":false
+					}
+ *  ResultDataLen: 	返回配置结果的长度*/
+int32_t Glnk_Set_VideoRecord_Opt_Callback(char * pJsonData, int32_t JsonDataLen, char *pResultData, int32_t *ResultDataLen);
+
+
+
+
+int32_t Glnk_Get_AudioStream_Opt_Callback(char * pJsonData, int32_t JsonDataLen, char *pResultData, int32_t *ResultDataLen)
+{
+	printf("%s\n", __FUNCTION__);
+	return 0;
+}
+
+
+int32_t Glnk_Set_AudioStream_Opt_Callback(char * pJsonData, int32_t JsonDataLen, char *pResultData, int32_t *ResultDataLen)
+{
+	printf("%s\n", __FUNCTION__);
+	return 0;
+}
+
+
+~ # 
+~ # 
+~ # 
+~ # [16:00:00.785326] [1259][udpserver] new connection: 192.168.200.100:46200 in 
+[16:00:00.864049] [2625][GTConnectionPro] GTConnectionProLogin:852: LoginInfo->streamMode = 3
+GLNK_PwdAuth_Callback name admin, pwd admin
+flag A ! 
+ GLNK_GetDevInfo_Callback 111
+companyId HANK
+productId IPD-E14Y02
+name IPC
+softwareVersion V1.04.10-170911 10:56
+channelNum 54
+alarmType 0
+deviceType 0
+[16:00:01.063039] [2625][GTConnectionPro] GTConnectionLoginSettingTLV:1929: ooooooooooooooooooo id: 58   TlvType: 1034
+[16:00:01.063352] [2625][GTConnectionPro] GTConnectionProPutTLVReqInC2C:84: GTCInfo->TlvType = 1034 TlvLen = 1
+Glnk_Get_AudioStream_Opt_Callback
+[16:00:02.793932] [1259][udpserver] new connection: 192.168.200.100:32819 in 
+
+~ # 
+
+

@@ -1,0 +1,103 @@
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+utf-8与unicode是什么关系？
+unicode规定字符的编码、码字，而UTF-8是一Unicode及UCS的一种转换格式
+
+
+http://www.cnblogs.com/xiaomia/archive/2010/11/28/1890072.html
+
+
+
+UTF-8 UTF-16 UTF-32之间是什么关系？
+
+
+Unicode
+汉
+\u6c49
+
+123abcABC?汉？
+\u0031\u0032\u0033\u0061\u0062\u0063\u0041\u0042\u0043\u003f\u6c49\uff1f
+
+
+
+UTF-8
+汉
+&#x6C49;
+123abcABC?汉？
+123abcABC?&#x6C49;&#xFF1F;
+
+
+
+URL UTF-8
+汉
+%e6%b1%89
+
+123abcABC?汉
+123abcABC%3f%e6%b1%89
+
+123abcABC?汉？
+123abcABC%3f%e6%b1%89%ef%bc%9f
+
+
+
+
+URL GB2312
+汉
+%ba%ba
+
+123abcABC?汉
+123abcABC%3f%ba%ba
+
+123abcABC?汉？
+123abcABC%3f%ba%ba%a3%bf
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+wigewige@ubuntu:~/share/develop/wigewige/science$ ./xy 
+i=-0.960000,j=-0.940000,x=2,y=96
+
+
+
+1  为什么是96，而非97
+
+2  第一是设了中，后面怎么内容变了，变乱码
+
+3 并且值也怪，0xffffffb8，而不是0xb8
+
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?><s:Envelope xmlns:sc="http://www.w3.org/2003/05/soap-encoding" xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:tt="http://www.onvif.org/ver10/schema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:tns1="http://www.onvif.org/ver10/topics" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsa5="http://www.w3.org/2005/08/addressing" xmlns:c14n="http://www.w3.org/2001/10/xml-exc-c14n#" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xmime="http://tempuri.org/xmime.xsd" xmlns:xop="http://www.w3.org/2004/08/xop/include" xmlns:wsrf-bf="http://docs.oasis-open.org/wsrf/bf-2" xmlns:wstop="http://docs.oasis-open.org/wsn/t-1" xmlns:wsrf-r="http://docs.oasis-open.org/wsrf/r-2" xmlns:tds="http://www.onvif.org/ver10/device/wsdl" xmlns:trt="http://www.onvif.org/ver10/media/wsdl"><s:Header><wsse:Security><wsu:Timestamp><wsu:Created>2017-09-18T09:38:40Z</wsu:Created><wsu:Expires>2017-09-18T09:38:40Z</wsu:Expires></wsu:Timestamp><wsse:UsernameToken><wsse:Username>admin</wsse:Username><wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordDigest">Ad6kp7Jc57348bhusEvGd7dPP6s=</wsse:Password><wsse:Nonce>sXHuIUUqmk8MDoo90hBlK/sE6Bg=</wsse:Nonce><wsu:Created>2017-09-18T09:38:40Z</wsu:Created></wsse:UsernameToken></wsse:Security></s:Header><s:Body><trt:SetOSD><trt:OSD token="OsdToken_100"><tt:VideoSourceConfigurationToken></tt:VideoSourceConfigurationToken><tt:Type>Text</tt:Type><tt:Position><tt:Type>Custom</tt:Type><tt:Pos x="-0.96" y="-0.94"/></tt:Position><tt:TextString><tt:Type>Plain</tt:Type><tt:FontSize>3</tt:FontSize><tt:PlainText>yuv中</tt:PlainText></tt:TextString></trt:OSD></trt:SetOSD></s:Body></s:Envelope>,__trt__SetOSD,5298
+wigewige, osd_info.text_info[0].str=yuv中,__trt__SetOSD,5300
+
+osd_info.text_info[0].str[0]=0x79 osd_info.text_info[0].str[1]=0x75 osd_info.text_info[0].str[2]=0x76 osd_info.text_info[0].str[3]=0xffffffe4 osd_info.text_info[0].str[4]=0xffffffb8 osd_info.text_info[0].str[5]=0xffffffad 
+
+
+wigewige, __trt__SetOSD,5310
+wigewige, *pos->x=-0.960000,*pos->y=-0.940000,__trt__SetOSD,5327
+wigewige, osd_info.text_info[i].text_x=2,osd_info.text_info[i].text_y=96,__trt__SetOSD,5336
+
+
+
+
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?><s:Envelope xmlns:sc="http://www.w3.org/2003/05/soap-encoding" xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:tt="http://www.onvif.org/ver10/schema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:tns1="http://www.onvif.org/ver10/topics" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsa5="http://www.w3.org/2005/08/addressing" xmlns:c14n="http://www.w3.org/2001/10/xml-exc-c14n#" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xmime="http://tempuri.org/xmime.xsd" xmlns:xop="http://www.w3.org/2004/08/xop/include" xmlns:wsrf-bf="http://docs.oasis-open.org/wsrf/bf-2" xmlns:wstop="http://docs.oasis-open.org/wsn/t-1" xmlns:wsrf-r="http://docs.oasis-open.org/wsrf/r-2" xmlns:tds="http://www.onvif.org/ver10/device/wsdl" xmlns:trt="http://www.onvif.org/ver10/media/wsdl"><s:Header><wsse:Security><wsu:Timestamp><wsu:Created>2017-09-18T09:39:03Z</wsu:Created><wsu:Expires>2017-09-18T09:39:03Z</wsu:Expires></wsu:Timestamp><wsse:UsernameToken><wsse:Username>admin</wsse:Username><wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordDigest">LsSVVCasobgVpE8RQpABN+m/vYI=</wsse:Password><wsse:Nonce>lccmXtfV0Ut0Y8M53xcZZ3TaqRU=</wsse:Nonce><wsu:Created>2017-09-18T09:39:03Z</wsu:Created></wsse:UsernameToken></wsse:Security></s:Header><s:Body><trt:SetOSD><trt:OSD token="OsdToken_100"><tt:VideoSourceConfigurationToken></tt:VideoSourceConfigurationToken><tt:Type>Text</tt:Type><tt:Position><tt:Type>Custom</tt:Type><tt:Pos x="-0.96" y="0.92"/></tt:Position><tt:TextString><tt:Type>Plain</tt:Type><tt:FontSize>3</tt:FontSize><tt:PlainText>yuv??-</tt:PlainText></tt:TextString></trt:OSD></trt:SetOSD></s:Body></s:Envelope>,__trt__SetOSD,5298
+wigewige, osd_info.text_info[0].str=yuv??-,__trt__SetOSD,5300
+osd_info.text_info[0].str[0]=0x79 osd_info.text_info[0].str[1]=0x75 osd_info.text_info[0].str[2]=0x76 osd_info.text_info[0].str[3]=0xffffffc3 osd_info.text_info[0].str[4]=0xffffffa4 osd_info.text_info[0].str[5]=0xffffffc2 osd_info.text_info[0].str[6]=0xffffffb8 osd_info.text_info[0].str[7]=0xffffffc2 osd_info.text_info[0].str[8]=0xffffffad 
+
+wigewige, __trt__SetOSD,5310
+wigewige, *pos->x=-0.960000,*pos->y=0.920000,__trt__SetOSD,5327
+wigewige, osd_info.text_info[i].text_x=2,osd_info.text_info[i].text_y=3,__trt__SetOSD,5336
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+__trt__GetOSD
+
+__trt__SetOSD
+
