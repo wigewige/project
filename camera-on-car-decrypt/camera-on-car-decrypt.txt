@@ -1,0 +1,177 @@
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+3516cv300 IE升级喂狗出现看门狗操作不了的问题
+
+ioctl: Operation not permitted
+fail to feed hi3518 watchdog!
+ioctl: Operation not permitted
+fail to feed hi3518 watchdog!
+ioctl: Operation not permitted
+fail to feed hi3518 watchdog!
+ioctl: Operation not permitted
+fail to feed hi3518 watchdog!
+ioctl: Operation not permitted
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+整理下要输出的库和头文件
+
+整理下工程代码
+
+编译通V300的库
+
+拿来V300的板子,在V300上调试通过
+
+把库和头文件一起发给对方(用V500编,不用X86的),然后还有升级文件问下韩畅要不要一起发给他们,好配合使用.
+
+目前还遗留中文不能显示的问题,大小写字母,数字都可以.
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+段错误
+
+还是要nfs在线调，效率高。不用一次次重新长时间编版本，还烧还改
+
+写出莫名其妙的段错误，不仔细很容易出错，不明原理很容易写出莫名其妙的段错误
+
+
+跑好下面去了，才停下来，导致不好定位在最初哪里出现段错误。以后用注释法定位，比用打印法会定位准确，
+
+typedef struct{
+	unsigned int chn;
+	unsigned int arn;
+	unsigned int color;
+	unsigned int text_enable;
+	unsigned int len;
+	unsigned int start_x;
+	unsigned int start_y;	
+	unsigned int str[OSDTEXTLENGTH];
+}Target_SDK_OSD_Info;
+
+typedef struct{
+	UINT32 chn;
+	UINT32 arn;
+	UINT32 color;
+	UINT32 text_enable;
+	UINT32 len;
+	UINT32 start_x;
+	UINT32 start_y;	
+	SINT8 str[OSDTEXTLENGTH];
+}VIDEOMANAGE_OSDTEXT_ST;
+
+
+
+确实是SdkOsdSetFun引起，注释掉的就正常
+							ret =SdkOsdSetFun(AVnetctl_tmp, tagSdkOsdInfo);
+
+
+
+gdb可以跑，可以用
+
+~ # 
+~ # 
+~ # 
+~ # 
+~ # NetReqProc: tagcmdhead_pt->m_CmdType = 64
+wigewige Thread_NetReqProc,1852,SetSdkOsdReq
+wigewige VIDEOMANAGE_Set_OSDText_API,3728
+wigewige VIDEOMANAGE_Set_OSDText_API,3760
+wigewige send_msg_to_mw,166
+wigewige send_msg_to_mw,172
+sdk_app : READ from fifo : head.symbol=SOSD
+sdk_app : find_section() : symbol=SOSD
+sdk_app : found fun_name is SOSD
+wigewige handle_client_request,183
+wigewige handle_client_request,186
+wigewige handle_client_request,196
+wigewige handle_client_request,203
+wigewige handle_client_request,209
+wigewige send_msg_to_mw,177
+wigewige send_msg_to_mw,187
+wigewige VIDEOMANAGE_Set_OSDText_API,3763
+Fun:DebugBacktrace Line:234 stop app on signal SIGSEGV(11)
+
+
+unhandled page fault (11) at: 0x00000000
+signal 11 : [(nil)]
+sdk_app : process req : qmsg.cType=42,fun_name=SOSD
+wigewige mw_enc_set_osd_api,1796
+wigewige mw_enc_set_osd_api,1873
+wigewige osd_set,3328
+wigewige osd_set,3341
+cur log num 12
+log_notice, message 13 is [(nil)]
+cur log num 13
+log_notice, message 14 is fail at NetReqProc
+[sched_delayed] sched: RT throttling activated
+Fun:main Line:1483 system exit <<<
+~~~~NTP Thread exit
+wigewige osd_set,3417
+
+== hiapp dead:1 failedlimit:0   softwdg_watch: 1268 ==
+
+softwatchdog time meet, reset [hiapp], it has been reset 2 times since system boot.
+
+~ # killall: hiapp: no process killed
+==============sdk_app: Recv sig 15  !!=============
+region start deinit
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+以PTZ为例比较容易理解
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+NO VIDEO
+
+get sensor NONE
+
+ERROR sensor type not found !
+SENSOR_TYPE -1
+ipc_dom type = 10, af_flag = 0, ir_out_mode 0 gSelfAlgType = 0
+
+hi3518e = 0, hi3516a_board = 0, hi3518ev200 = 2
+
+
+~ # cat /mnt/flash/productinfo/deviceid.txt 
+
+
+
+DEVICEID V6202IR-NONE~ # 
+
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+------------------------
+
+SearchDevice.h
+
+NET_IPC_Search_Init
+
+------------------------
+IPCNetSDK.h
+
+NET_IPC_Init
+NET_IPC_GetLastError
+
+
+

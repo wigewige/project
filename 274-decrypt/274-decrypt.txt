@@ -6,6 +6,263 @@
 
 ——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
 
+3519 1080p下切换264/265一两次或多次，即出现sdk coredump，而且产生位置不同
+
+Login incorrect
+HI3519V101 login: func FunSetVideoCfg line 1160 
+wigewige func FunSetVideoCfg line 1162,  ptr->cFlag=254
+wigewige FunSetVideoCfg line 1167,ptr->iPayloadType=0 
+wigewige FunSetVideoCfg,1170
+wigewige VideoManage_Set_PayloadType_API,982
+wigewige VideoManage_Set_PayloadType_API,983
+wigewige VideoManage_Set_PayloadType_API,990
+wigewige VideoManage_Set_StreamRate_API,1168,value.streamid=0,value.streamrate=4096
+wigewige VideoManage_Set_StreamRate_API,1200
+wigewige VideoManage_Set_StreamRate_API,1218
+wigewige VideoManage_Set_StreamRate_API,1227
+wigewige VideoManage_Set_StreamRate_API,1257
+apppppppp bitrate :4096, min rate :0
+wigewige VideoManage_Set_StreamRate_API,1271
+wigewige VideoManage_Set_PayloadType_API line 1097 
+Thread_AV_Send client 40 recv ret 0, error 0 Success --clien close
+set payload(0) to stream[0]
+wigewige mw_enc_set_payload_api line 426 
+wigewige mw_enc_set_pPhysAddr = 0, PoolPhysAddr = 8c244000, PoolSize = 125859840
+Kernel panic - not syncing: 
+ASSERT failed at:
+  >File name: /home/pub/platform-h6/mpp/code/mkp/comm/video_buf.c
+  >Function : VB_UserSub
+  >Line No. : 1437
+  >Condition: 0
+
+CPU: 0 PID: 973 Comm: proc_cli_req Tainted: P           O   3.18.20 #7
+[<c001487c>] (unwind_backtrace) from [<c0011964>] (show_stack+0x10/0x14)
+[<c0011964>] (show_stack) from [<c03c1e6c>] (dump_stack+0x88/0x98)
+[<c03c1e6c>] (dump_stack) from [<c03c0050>] (panic+0x9c/0x1fc)
+[<c03c0050>] (panic) from [<bf000354>] (osal_read+0x0/0x3c [hi_osal])
+[<bf000354>] (osal_read [hi_osal]) from [<bf0265f8>] (base_mod_exit+0x944/0x1c [hi3519v101_base])
+CPU1: stopping
+CPU: 1 PID: 0 Comm: swapper/1 Tainted: P           O   3.18.20 #7
+[<c001487c>] (unwind_backtrace) from [<c0011964>] (show_stack+0x10/0x14)
+[<c0011964>] (show_stack) from [<c03c1e6c>] (dump_stack+0x88/0x98)
+[<c03c1e6c>] (dump_stack) from [<c0013bc8>] (handle_IPI+0x1cc/0x1ec)
+[<c0013bc8>] (handle_IPI) from [<c0008620>] (gic_handle_irq+0x74/0x78)
+[<c0008620>] (gic_handle_irq) from [<c0012400>] (__irq_svc+0x40/0x54)
+Exception stack(0xca871f58 to 0xca871fa0)
+1f40:                                                       ca871fa0 fffffff8
+1f60: 18ffb677 0000036e cae57ed8 00000001 185edb1a 0000036e 18ffb677 0000036e
+1f80: cae57edc c03c79ac 00000018 ca871fa0 29aaaaab c029d280 00000153 ffffffff
+[<c0012400>] (__irq_svc) from [<c029d280>] (cpuidle_enter_state+0x50/0x140)
+[<c029d280>] (cpuidle_enter_state) from [<c00509a4>] (cpu_startup_entry+0x1bc/0x29c)
+[<c00509a4>] (cpu_startup_entry) from [<800086c4>] (0x800086c4)
+---[ end Kernel panic - not syncing: 
+ASSERT failed at:
+  >File name: /home/pub/platform-h6/mpp/code/mkp/comm/video_buf.c
+  >Function : VB_UserSub
+  >Line No. : 1437
+  >Condition: 0
+
+
+
+HI3519V101 login: 
+HI3519V101 login: 
+HI3519V101 login: 
+HI3519V101 login: func FunSetVideoCfg line 1160 
+wigewige func FunSetVideoCfg line 1162,  ptr->cFlag=254
+wigewige FunSetVideoCfg line 1167,ptr->iPayloadType=0 
+wigewige FunSetVideoCfg,1170
+wigewige VideoManage_Set_PayloadType_API,982
+wigewige VideoManage_Set_PayloadType_API,983
+wigewige VideoManage_Set_PayloadType_API,990
+wigewige VideoManage_Set_StreamRate_API,1168,value.streamid=0,value.streamrate=4096
+Thread_AV_Send client 40 recv ret 0, error 0 Success --clien close
+wigewige VideoManage_Set_StreamRate_API,1200
+wigewige VideoManage_Set_StreamRate_API,1218
+wigewige VideoManage_Set_StreamRatPhysAddr = 0, PoolPhysAddr = 8c244000, PoolSize = 125859840
+Kernel panic - not syncing: 
+ASSERT failed at:
+  >File name: /home/pub/platform-h6/mpp/code/mkp/comm/video_buf.c
+  >Function : VB_UserSub
+  >Line No. : 1437
+  >Condition: 0
+
+CPU: 0 PID: 1256 Comm: proc_cli_req Tainted: P           O   3.18.20 #7
+[<c001487c>] (unwind_backtrace) from [<c0011964>] (show_stack+0x10/0x14)
+[<c0011964>] (show_stack) from [<c03c1e6c>] (dump_stack+0x88/0x98)
+[<c03c1e6c>] (dump_stack) from [<c03c0050>] (panic+0x9c/0x1fc)
+[<c03c0050>] (panic) from [<bf000354>] (osal_read+0x0/0x3c [hi_osal])
+[<bf000354>] (osal_read [hi_osal]) from [<bf0265f8>] (base_mod_exit+0x944/0x1c [hi3519v101_base])
+CPU1: stopping
+CPU: 1 PID: 0 Comm: swapper/1 Tainted: P           O   3.18.20 #7
+[<c001487c>] (unwind_backtrace) from [<c0011964>] (show_stack+0x10/0x14)
+[<c0011964>] (show_stack) from [<c03c1e6c>] (dump_stack+0x88/0x98)
+[<c03c1e6c>] (dump_stack) from [<c0013bc8>] (handle_IPI+0x1cc/0x1ec)
+[<c0013bc8>] (handle_IPI) from [<c0008620>] (gic_handle_irq+0x74/0x78)
+[<c0008620>] (gic_handle_irq) from [<c0012400>] (__irq_svc+0x40/0x54)
+Exception stack(0xca871f58 to 0xca871fa0)
+1f40:                                                       ca871fa0 fffffff8
+1f60: 88a8a422 00000050 cae57ed8 00000001 85ad9586 00000050 88a8a422 00000050
+1f80: cae57edc c03c79ac 00000018 ca871fa0 29aaaaab c029d280 90000153 ffffffff
+[<c0012400>] (__irq_svc) from [<c029d280>] (cpuidle_enter_state+0x50/0x140)
+[<c029d280>] (cpuidle_enter_state) from [<c00509a4>] (cpu_startup_entry+0x1bc/0x29c)
+[<c00509a4>] (cpu_startup_entry) from [<800086c4>] (0x800086c4)
+---[ end Kernel panic - not syncing: 
+ASSERT failed at:
+  >File name: /home/pub/platform-h6/mpp/code/mkp/comm/video_buf.c
+  >Function : VB_UserSub
+  >Line No. : 1437
+  >Condition: 0
+
+
+
+
+
+
+NetReqProc: Accept new AV client from 10.0.39.247 
+Thread_AV_Send client 39 recv ret -1, error 104 Connection reset by peer --clien close
+cur log num 80
+log_notice, message 81 is system start!!
+
+NetReqProc: Accept new AV client from 10.0.39.247 
+func FunSetVideoCfg line 1160 
+wigewige func FunSetVideoCfg line 1162,  ptr->cFlag=254
+wigewige FunSetVideoCfg line 1167,ptr->iPayloadType=0 
+wigewige FunSetVideoCfg,1170
+wigewige VideoManage_Set_PayloadType_API,982
+wigewige VideoManage_Set_PayloadType_API,983
+wigewige VideoManage_Set_PayloadType_API,990
+wigewige VideoManage_Set_StreamRate_API,1168,value.streamid=0,value.streamrate=4096
+wigewige VideoManage_Set_StreamRate_API,1200
+wigewige VideoManage_Set_StreamRate_API,1218
+wigewige VideoManage_Set_StreamRate_API,1227
+wigewige VideoManage_Set_PayloadType_API line 1097 
+Thread_AV_Send client 40 recv ret 0, error 0 Success --clien close
+set payload(0) to stream[0]
+wigewige mw_enc_set_payload_api line 426 
+wigewige mw_enc_set_payload_api line 481 
+wigewige mw_enc_set_payload_api line 483 
+wigewige mw_enc_set_payload_api line 486 
+wigewige mw_enc_set_payload_api line 506 
+wigewige mw_enc_set_payload_api line 509 
+wigewige mw_enc_set_payload_api line 511 
+wigewige mw_enc_set_payload_api line 521 
+wigewige mw_enc_set_payload_api,536
+wigewige osd_realease_by_grp,3034
+wigewige osd_realease_by_grp,3037
+wigewige osd_realease_by_grp,3039
+wigewige mw_enc_set_payload_api,541
+wigewige SAMPLE_COMM_VENC_Stop,1363
+wigewige SAMPLE_COMM_VENC_Stop,1376
+wigewige SAMPLE_COMM_VENC_Stop,1384
+wigewige mw_enc_set_payload_api,549
+wigewige SAMPLE_COMM_VENC_START,818
+wigewige SAMPLE_COMM_VENC_START,824
+wigewige SAMPLE_COMM_VENC_START,832
+wigewige SAMPLE_COMM_VENC_START,843
+wigewige SAMPLE_COMM_VENC_START,855
+wigewige SAMPLE_COMM_VENC_START,866
+wigewige mw_enc_set_payload_api,556
+wigewige mw_enc_set_payload_api,559
+size :44, height:1080 ,width :1920 , sizeindex:3
+area :0 rgn:4
+w :1920 h 1080  x :2  y:2
+area: 0 stream :0 count :0
+area 0 RgnHandle 4 VencGrp 0 (1920x1080)  x 36 y 20 
+size :28, height:720 ,width :1280 , sizeindex:3
+area :0 rgn:12
+w :1280 h 720  x :2  y:2
+area: 0 stream :1 count :1
+size :28, height:720 ,width :1280 , sizeindex:3
+area :0 rgn:20
+w :1280 h 720  x :2  y:2
+area: 0 stream :2 count :1
+area 0 RgnHandle 20 VencGrp 2 (1280x720)  x 25 y 14 
+size :44, height:1080 ,width :1920 , sizeindex:3
+area :5 rgn:9
+w :1920 h 1080  x :95  y:2
+area: 5 stream :0 count :0
+area 5 RgnHandle 9 VencGrp 0 (1920x1080)  x 1480 y 20 
+size :28, height:720 ,width :1280 , sizeindex:3
+area :5 rgn:17
+w :1280 h 720  x :95  y:2
+area: 5 stream :1 count :1
+size :28, height:720 ,width :1280 , sizeindex:3
+area :5 rgn:25
+w :1280 h 720  x :95  y:2
+area: 5 stream :2 count :1
+area 5 RgnHandle 25 VencGrp 2 (1280x720)  x 1216 y 14 
+wigewige mw_enc_set_payload_api,563
+change payload ok
+NetReqProc: Accept new AV client from 10.0.39.247 
+
+HI3519V101 login: 
+HI3519V101 login: 
+
+
+
+
+/mnt/nfs/develop/project/274-decrypt/APP # 
+/mnt/nfs/develop/project/274-decrypt/APP # func FunSetVideoCfg line 1160 
+wigewige func FunSetVideoCfg line 1162,  ptr->cFlag=254
+wigewige FunSetVideoCfg line 1167 
+apppppppp bitrate :2048, min rate :0
+wigewige FunSetVideoCfg line 1181 
+wigewige FunSetVideoCfg line 1195 
+wigewige FunSetVideoCfg line 1208 
+apppppppp bitrate :8192, min rate :0
+wigewige FunSetVideoCfg line 1229 
+VideoManage_Set_Resolution_API 1691 : limit 1920x1080
+appppp streamid:0 resolution h:1080 w:1920
+_mw_enc_check_resolution stream = 0 index = 0
+Thread_AV_Send client 40 recv ret 0, error 0 Success --clien close
+_mw_enc_set_bitrate_api payload: 96 pBitrate->mode: 0 enRcMode: 2
+vbr enRcMode 2, u32MinQp 24, u32MaxQp 42, u32MaxBitRate 2048 
+u32Gop 50, u32StatTime 2, u32SrcFrmRate 25, fr32DstFrmRate 25
+set payload(1) to stream[0]
+size :44, height:1080 ,width :1920 , sizeindex:3
+area :0 rgn:4
+w :1920 h 1080  x :2  PhysAddr = 0, PoolPhysAddr = 8c27a000, PoolSize = 125859840
+Kernel panic - not syncing: 
+ASSERT failed at:
+  >File name: /home/pub/platform-h6/mpp/code/mkp/comm/video_buf.c
+  >Function : VB_UserSub
+  >Line No. : 1437
+  >Condition: 0
+
+CPU: 0 PID: 412 Comm: proc_cli_req Tainted: P           O   3.18.20 #7
+[<c001487c>] (unwind_backtrace) from [<c0011964>] (show_stack+0x10/0x14)
+[<c0011964>] (show_stack) from [<c03c1e6c>] (dump_stack+0x88/0x98)
+[<c03c1e6c>] (dump_stack) from [<c03c0050>] (panic+0x9c/0x1fc)
+[<c03c0050>] (panic) from [<bf000354>] (osal_read+0x0/0x3c [hi_osal])
+[<bf000354>] (osal_read [hi_osal]) from [<bf0265f8>] (base_mod_exit+0x944/0x1c [hi3519v101_base])
+CPU1: stopping
+CPU: 1 PID: 0 Comm: swapper/1 Tainted: P           O   3.18.20 #7
+[<c001487c>] (unwind_backtrace) from [<c0011964>] (show_stack+0x10/0x14)
+[<c0011964>] (show_stack) from [<c03c1e6c>] (dump_stack+0x88/0x98)
+[<c03c1e6c>] (dump_stack) from [<c0013bc8>] (handle_IPI+0x1cc/0x1ec)
+[<c0013bc8>] (handle_IPI) from [<c0008620>] (gic_handle_irq+0x74/0x78)
+[<c0008620>] (gic_handle_irq) from [<c0012400>] (__irq_svc+0x40/0x54)
+Exception stack(0xca871f58 to 0xca871fa0)
+1f40:                                                       ca871fa0 fffffff8
+1f60: 1351bcb2 00000027 cae57ed8 00000001 0f47e6c0 00000027 1351bcb2 00000027
+1f80: cae57edc c03c79ac 00000018 ca871fa0 29aaaaab c029d280 00000153 ffffffff
+[<c0012400>] (__irq_svc) from [<c029d280>] (cpuidle_enter_state+0x50/0x140)
+[<c029d280>] (cpuidle_enter_state) from [<c00509a4>] (cpu_startup_entry+0x1bc/0x29c)
+[<c00509a4>] (cpu_startup_entry) from [<800086c4>] (0x800086c4)
+---[ end Kernel panic - not syncing: 
+ASSERT failed at:
+  >File name: /home/pub/platform-h6/mpp/code/mkp/comm/video_buf.c
+  >Function : VB_UserSub
+  >Line No. : 1437
+  >Condition: 0
+
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
 IE没声音，音频输入有问题，主要由于以下几个联合引起
 1 硬件连接上使用的是中间两根线，而不是靠左边的两根线。一根地GND，一根音频输入
 2 软件上错误使用了IN1L，之前产品一直用IN1L，所以应当配位0X3，但这次硬件改为使用IN0L了，所以需要相应改为0X1
