@@ -1,0 +1,801 @@
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+1 只改为smart模式
+2 最新qp设到28，+-2一档
+3 stat不改，没什么效果
+4 AVBR不改，试验过没什么效果
+
+
+同时最小QP上调到28，normal和smart模式还是相差挺多，节省了50%-60%，smart还是有用的
+minqp=28,smart stat=2    251-572 612kbps rc 297-327
+minqp=28,smart stat=10   222-422         rc 292-313kbps 
+minqp=28,normal 359-435kbps  322-374   rc 315-341
+
+
+
+同时最小QP上调到24，normal和smart模式还是相差挺多，节省了14%-19%，smart还是有用的
+minqp=24,smart   841-945  783-877
+minqp=24,normal 862-979kbps       953-1042  929-999
+
+同时最小QP上调到28，normal和smart模式还是相差挺多，节省了50%-60%，smart还是有用的
+minqp=28,smart 220-284kbps
+minqp=28,normal 359-435kbps
+
+同时最小QP上调到32，normal和smart模式还是相差挺多，节省了57%-115%，smart还是有用的
+minqp=32,smart 80-141kbps
+minqp=32,normal 172-227kbps
+
+AVBR调到最低20%也没有降到6,7百k,没明显效果
+AVBR没有明显效果
+AVBR 1000-1100  1000-1200
+VBR 1000-1200
+
+
+
+/proc/umap # cat rc
+
+[RC] Version: [Hi3516CV300_MPP_V1.0.1.1 B010 Release], Build Time[Apr  7 2017, 19:35:15]
+
+------BASE PARAMS 1------------------------------------------------------------
+  ChnId    Gop  StatTm  ViFr       TrgFr ProType  RcMode  Br(kbps)  FluLev  IQp  PQp  BQp 
+      0     30      10    25        15/0      96     VBR      3072     N/A  N/A  N/A  N/A
+      1     30      10    25        15/0      96     VBR      1024     N/A  N/A  N/A  N/A
+      2      1      60    25         1/0    1002   FIXQP       N/A     N/A   70   70   70
+
+------BASE PARAMS 2------------------------------------------------------------
+  ChnId   EnableIdr    bQpMapEn   QpMapMode bQpMapAbsQp 
+      0           Y           N         N/A         N/A
+      1           Y           N         N/A         N/A
+      2           Y         N/A         N/A         N/A
+
+-----RUN COMM PARAM 1----------------------------------------------------------
+  ChnId  RowQpDelta                       ThrdI(16)
+      0           2  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      1           2  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      2           0  [   0   0   0   0   0   0   0   0 255 255 255 255 255 255 255 255]
+
+-----RUN COMM PARAM 2------------------------------------------------------------
+  ChnId  FirstFrmStartQP                  ThrdP(16)
+      0               -1  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      1               -1  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      2               -1  [   0   0   0   0   0   0   0   0 255 255 255 255 255 255 255 255]
+
+-----RUN COMM PARAM 3----------------------------------------------------------
+  ChnId       PARAM                       ThrdB(16)
+      0     DEFAULT  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      1     DEFAULT  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      2     DEFAULT  [   0   0   0   0   0   0   0   0 255 255 255 255 255 255 255 255]
+
+-----RUN COMM PARAM 4----------------------------------------------------------
+  ChnId                      LevelI(16)
+      0  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      1  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      2  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+
+-----RUN COMM PARAM 5----------------------------------------------------------
+  ChnId                      LevelP(16)
+      0  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      1  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      2  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+
+-----RUN COMM PARAM 6----------------------------------------------------------
+  ChnId                      LevelB(16)
+      0  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      1  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      2  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+
+-----RUN COMM PARAM 7----------------------------------------------------------
+  ChnId   bLost     LostThr  LostFrmStr    EncGap  RCPriority   SprFrmMod     SprIFrm     SprPFrm     SprBFrm
+      0       N    83886080      NORMAl         0     BITRATE        None      500000      500000      500000
+      1       N    83886080      NORMAl         0     BITRATE        None      500000      500000      500000
+      2       N    83886080      NORMAl         0     BITRATE        None      500000      500000      500000
+
+-----GOP MODE ATTR-------------------------------------------------------------
+  ChnId   GopMode IpQpDelta  SPInterval SPQpDelta   BFrmNum  BQpDelta  BgInterval ViQpDelta  BgOutput
+      0    SmartP         7         N/A       N/A       N/A       N/A         300         2         Y
+      1    SmartP         7         N/A       N/A       N/A       N/A         300         2         Y
+      2       N/A       N/A         N/A       N/A       N/A       N/A         N/A       N/A       N/A
+
+-----RUN CBR PARAM ------------------------------------------------------------
+  ChnId  MinIprop  MaxIprop   MaxQp   MinQp  MaxIQp  MinIQp  QLevel  MaxReEncTimes
+
+-----RUN VBR PARAM ------------------------------------------------------------
+  ChnId   ChgPs  MinIprop  MaxIprop   MaxQp   MinQp  MaxIQp  MinIQp  MaxReEncTimes  MaxStillQP  MinPercent   MinStillPSNR
+      0      90         1        20      42      24      42      24              2         N/A         N/A            N/A
+      1      90         1        20      42      24      42      24              2         N/A         N/A            N/A
+
+-----RUN INFO1-----------------------------------------------------------------
+  ChnId   InsBr(kbps)   InsFr    WatL   CfgBt(kb)  RealBt(kb)   IPRatio  TarPercent   StartQp   MinQp   MaxQp
+      0           620      15       0         156          21         8         N/A        24      24      42
+      1            48      15       0          46           0        28         N/A        24      24      42
+      2           155       1       0           0         155         0         N/A        70      70      70
+
+-----RC PERFORMANCE  INFO------------------------------------------------------
+  ChnId           StaOfstaTim          TotaOfstaTim           StaOfEndTim          TotaOfEndTim             TotalTime
+      0             635110681               1475578             635087725                285978               1761556
+      1             635110388               1443977             635113343                312172               1756149
+      2             635110303                219649             634684943                  7946                227595
+/proc/umap # 
+
+
+
+
+
+
+
+
+				if(pstAttr.stGopAttr.enGopMode == VENC_GOPMODE_SMARTP)
+				{
+					pstAttr.stRcAttr.stAttrH264Vbr.u32StatTime = 10;
+					printf("wigewige %s,%d,pstAttr.stRcAttr.stAttrH264Vbr.u32StatTime=%d\n",__FUNCTION__,__LINE__,pstAttr.stRcAttr.stAttrH264Vbr.u32StatTime);
+				}
+
+
+        
+	// fresh stattime gop u32BgInterval for reduce bitrate
+	
+#if 0
+		HI_S32 height=0,gop=0;
+		HI_S32 enType,gopMode,rcMode;
+		enType=pstAttr.stVeAttr.enType;
+		gopMode=pstAttr.stGopAttr.enGopMode;
+		rcMode=pstAttr.stRcAttr.enRcMode;
+	
+	   
+		if((0==chn || 1==chn) && (enType==PT_H264 ||enType==PT_H265) && gopMode== VENC_GOPMODE_SMARTP && ((rcMode>=VENC_RC_MODE_H264CBR && rcMode<=VENC_RC_MODE_H264QPMAP) || (rcMode>=VENC_RC_MODE_H265CBR && rcMode<=VENC_RC_MODE_H265QPMAP)) )
+		{
+	
+			switch(rcMode)
+			{
+				case VENC_RC_MODE_H264CBR :
+					gop=pstAttr->stRcAttr.stAttrH264Cbr.u32Gop;
+					pstAttr.stRcAttr.stAttrH264Cbr.u32StatTime = pstAttr.stGopAttr.stSmartP.s32BgQpDelta/gop;
+					break;
+				case VENC_RC_MODE_H264VBR :
+					gop=pstAttr->stRcAttr.stAttrH264Vbr.u32Gop;
+					pstAttr.stRcAttr.stAttrH264Vbr.u32StatTime = pstAttr.stGopAttr.stSmartP.s32BgQpDelta/gop;
+					break;
+				case VENC_RC_MODE_H264AVBR :
+					gop=pstAttr->stRcAttr.stAttrH264AVbr.u32Gop;
+					break;
+				case VENC_RC_MODE_H264FIXQP :
+					gop=pstAttr->stRcAttr.stAttrH264FixQp.u32Gop;
+					break;
+				case VENC_RC_MODE_H264QPMAP :
+					gop=pstAttr->stRcAttr.stAttrH264QpMap.u32Gop;
+					break;
+				case VENC_RC_MODE_H265CBR :
+					gop=pstAttr->stRcAttr.stAttrH265Cbr.u32Gop;
+					break;
+				case VENC_RC_MODE_H265VBR :
+					gop=pstAttr->stRcAttr.stAttrH265Vbr.u32Gop;
+					break;
+				case VENC_RC_MODE_H265AVBR :
+					gop=pstAttr->stRcAttr.stAttrH265AVbr.u32Gop;
+					break;
+				case VENC_RC_MODE_H265FIXQP :
+					gop=pstAttr->stRcAttr.stAttrH265FixQp.u32Gop;
+					break;
+				case VENC_RC_MODE_H265QPMAP :
+					gop=pstAttr->stRcAttr.stAttrH265QpMap.u32Gop;
+					break;
+				default:
+					printf("wigewige err %s,%d,rcMode=%d\n",__FUNCTION__,__LINE__,rcMode);
+					break;
+			}
+				
+				printf("wigewige %s,%d,rcMode=%d,gop=%d\n",__FUNCTION__,__LINE__,rcMode,gop);
+	
+		}
+#endif
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+原来都在这里调用的，从全局参数中获取，全局参数又从配置文件中读取得到。#define _FILE_VIDEOINFO			"/mnt/flash/data/VideoInfo"
+init_video_params
+
+
+
+sdk_app : process req : qmsg.cType=37,fun_name=SRES
+set stream 0 resolution:height:1080 width:1920
+mw_api_err-mw_enc_set_resolution_api:888 setting resolution : same at all
+soap_serve_request----- soap->tag==d:Hello
+sdk_app : process req : qmsg.cType=38,fun_name=SBIT
+
+sdk_app : process req : qmsg.cType=39,fun_name=SFS
+
+stream 0 , VBR framerate : In 25, Fps 15, gop 50, statTime 10
+sdk_app : process req : qmsg.cType=40,fun_name=SGOP
+
+VBR gop : In 25, Fps 15, gop 30, statTime 2
+sdk_app : process req : qmsg.cType=41,fun_name=SQUAL
+wigewige mw_enc_set_quality_api,1934,minqp_array[quality_record[0]=24
+wigewige mw_enc_set_quality_api,1970
+wigewige SetRcParam,236
+wigewige SetRcParam,318
+
+
+
+sdk_app : process req : qmsg.cType=37,fun_name=SRES
+set stream 1 resolution:height:480 width:640
+mw_api_err-mw_enc_set_resolution_api:888 setting resolution : same at all
+sdk_app : process req : qmsg.cType=38,fun_name=SBIT
+wigewige mw_enc_set_bitrate_api,1116,minqp_array[quality_record[1]=24
+vbr enRcMode 2, u32MinQp 24, u32MaxQp 42, u32MinIQp 24, u32MaxBitRate 1024 
+u32Gop 15, u32StatTime 1, u32SrcFrmRate 25, fr32DstFrmRate 15
+sdk_app : process req : qmsg.cType=39,fun_name=SFS
+
+stream 1 , VBR framerate : In 25, Fps 15, gop 15, statTime 1
+sdk_app : process req : qmsg.cType=40,fun_name=SGOP
+
+VBR gop : In 25, Fps 15, gop 30, statTime 2
+[08:00:03.979221] [351][TSI_start] LBS_login:2952: gooServerAddr = 47.94.44.103,  gooServerPort = 28622 pushAddr = 112.29.172.247,  webPort = 4000 pushPort = 0 stAddr = 101.200.83.161,  stPort = 28640 gwport 4330 pad 7777 webPort4dev = 47.94.70.226:8088 vas = 1
+[08:00:03.979616] [351][TSI_start] GTUpdate_SetUrlAndPort:86: listport = :8088 ,listport = 8088 len = 17 len2 = 5
+[08:00:03.979838] [351][TSI_start] GTUpdate_SetUrlAndPort:87: DOMAINURL = 47.94.70.226:8088 GetListIP = 47.94.70.226,GetListPort = 8088
+[08:00:03.980049] [351][TSI_start] SetAlarmFlagValues:314: value=1
+sdk_app : process req : qmsg.cType=41,fun_name=SQUAL
+wigewige mw_enc_set_quality_api,1934,minqp_array[quality_record[1]=24
+wigewige mw_enc_set_quality_api,1970
+wigewige SetRcParam,236
+wigewige SetRcParam,318
+sdk_app : process req : qmsg.cType=37,fun_name=SRES
+set stream 2 resolution:height:720 width:1280
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+
+
+
+
+		case VENC_GOPMODE_SMARTP:
+		pstGopAttr->enGopMode  = VENC_GOPMODE_SMARTP;
+		pstGopAttr->stSmartP.s32BgQpDelta = 4;
+		pstGopAttr->stSmartP.s32ViQpDelta = 2;
+		pstGopAttr->stSmartP.u32BgInterval = (VIDEO_ENCODING_MODE_PAL == enNorm) ? 75 : 90;
+		break;
+    
+    
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+参考帧的时域相关性提升编码压缩性能。主要应用在监控场景。
+此场景的特点是摄像头固定安装，场景中的人和物体有静止有运动。
+? 在静止区域，利用长期参考帧和当前帧的时域相关性可以大幅降低码率，并减少呼
+吸效应和拖尾效应；
+? 在运动区域，利用短期参考帧进行运动估计。SmartP 模式拉长 IDR 帧间隔，中间
+定期插入虚拟 I 帧，能够大幅度降低监控场景的码率并提升图像质量，码率节省可
+以达到 30%~50%,但对于摄像头运动的场景不适用。
+    
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+
+u32RefreshLineNum参量使用当前获取的参数进行设置，不使用绝对值
+
+改gop参数后需要重新调用一遍HI_MPI_VENC_SetIntraRefresh接口
+仅VENC_GOPMODE_NORMALP才设置，其他不支持不进行设置
+
+当 bRefreshEnable 使能时，bISliceEnable 必须配置为使能。——OK
+HI_MPI_VENC_SetIntraRefresh 只对 H.264/ H.265 协议有效；——OK
+改变 Gop 后需要重新进行设置。                               ——?
+设置高级跳帧参考后需要重新进行设置，不支持高级跳帧参考 bEnablePred=0。——NONE
+保证设置的行数 u32RefreshLineNum 可以在一个 Gop 内完成 Islice 刷新，注意高级跳帧参考时只会在 base 层中 BASE_PSLICE_REFBYBASE 帧进行刷新。
+H.264 u32RefreshLineNum *Gop>=(u32PicHeight+15)/16
+H.265 u32RefreshLineNum *Gop >=(u32PicHeight+63)/64
+仅支持 GOP 模式为 VENC_GOPMODE_NORMALP 的编码通道。
+GOP 切换后该接口自动失效。如果 GOP 模式是从非 NORMALP 切向NORMALP，模式切换后调用该接口需等到 GOP 生效后该接口生效。
+该接口与 pskip 方式丢帧互斥。
+
+
+
+
+6.2.12 P 帧帧内刷新
+P 帧刷新 ISlice，可以为客户提供码流非常平滑的编码方式，每个 I 帧和 P 帧的大小可以非常接近。
+在网络带宽有限（如无线网络）的情况下，降低 I 帧过大带来的网络冲击，降低网传延时，降低网络传输出错的概率。
+
+6.2.12.1 使用方式
+步骤 1. 通过接口 HI_MPI_VENC_SetIntraRefresh 设置刷新使能 bRefreshEnable 及 ISlice 转换使能 bISliceEnable。
+步骤 2. 设置刷新使能后 SDK 会自动根据设置的刷新行数 u32RefreshLineNum 从每个 GOP 的第一帧开始从上至下完成 Intra 宏块刷新；刷新间隔为 GOP；
+步骤 3. 设置 ISlice 转换使能后 SDK 会自动把每次刷新第一帧的帧内预测宏块转换为一个 ISlice；刷新 ISlice 可以提供更好的码流兼容性；
+步骤 4. 设置 HI_MPI_VENC_SetIntraRefresh 接口后，码率控制依然生效，可以调整VENC_GOP_ATTR_S：stGopAttr.stNormalP.s32IPQpDelta 来控制 Intra 宏块刷新起始帧的大小，推荐值为-1；
+---- 结束
+6.2.12.2 注意事项
+HI_MPI_VENC_SetIntraRefresh 设置的刷新行数 u32RefreshLineNum 需要保证在一个 GOP 周期内，图像内所有的宏块行都完成一次刷新；
+由于刷新行数 u32RefreshLineNum 与编码参数 GOP 及跳帧参考参数相关，所以设置编码属性及跳帧参考高级接口后，HI_MPI_VENC_SetIntraRefresh 接口需要重新设置；
+HI_MPI_VENC_SetIntraRefresh 只对 H.264/ H.265 协议有效；
+HI_MPI_VENC_SetIntraRefresh 设置使能 bISliceEnable，刷新 Islice 的帧会自动按照刷新 Islcie 的大小做 slice 划分，用户设置的 slice 划分接口将无效。
+当 bRefreshEnable 使能时，bISliceEnable 必须配置为使能。
+
+
+
+HI_MPI_VENC_SetIntraRefresh
+
+
+设置 P 帧刷 Islice 的参数。
+
+改变 Gop 后需要重新进行设置。
+设置高级跳帧参考后需要重新进行设置，不支持高级跳帧参考 bEnablePred=0。
+保证设置的行数 u32RefreshLineNum 可以在一个 Gop 内完成 Islice 刷新，注意高级跳帧参考时只会在 base 层中 BASE_PSLICE_REFBYBASE 帧进行刷新。
+u32RefreshLineNum 需满足表 6-10 描述计算公式
+
+
+H.264 u32RefreshLineNum *Gop>=(u32PicHeight+15)/16
+H.265 u32RefreshLineNum *Gop >=(u32PicHeight+63)/64
+
+
+需要等到下一个 I 帧时生效的接口在进行参数设置后会生成一个 I 帧，保证参数设置生效。
+仅支持 GOP 模式为 VENC_GOPMODE_NORMALP 的编码通道。
+GOP 切换后该接口自动失效。如果 GOP 模式是从非 NORMALP 切向NORMALP，模式切换后调用该接口需等到 GOP 生效后该接口生效。
+该接口与 pskip 方式丢帧互斥。
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+264
+主码流   1080p    3072b/s  264   VBR   15FPS   GOP30
+次码流   640X480  1024b/s  264   VBR   15FPS   GOP30
+点播主码流
+【翰晖3516cv300】
+完全静止场景：平均2140～2520  当前 1516~2678
+完全静止场景：平均2061～2272  当前 1664~2765
+
+
+265
+主码流   1080p    3072b/s  265   VBR   15FPS   GOP30
+次码流   640X480  1024b/s  265   VBR   15FPS   GOP30
+点播主码流
+【翰晖3516cv300】
+完全静止场景：平均1720～1942  当前 1434~2292
+
+
+
+/proc/umap # 
+/proc/umap # 
+/proc/umap # 
+/proc/umap # cat  venc 
+
+[VENC] Version: [Hi3516CV300_MPP_V1.0.1.1 B010 Release], Build Time[Apr  7 2017, 19:35:09]
+
+-----MODULE PARAM--------------------------------------------------------------
+    VencBufferCache   FrameBufRecycle
+                  0                 0
+
+-----VENC CHN ATTR 1-----------------------------------------------------------
+      ID   Width  Height  Type  ByFrame    Sequence   LeftBytes     LeftFrm  CurPacks   GopMode  Prio
+       0    1920    1080   265        Y        3225           0           0         1   NormalP     0
+       1     640     480    96        Y       28475           0           0         1   NormalP     0
+       2    1280     720  1002        Y        1908           0           0         2   NormalP     0
+
+-----VENC CHN ATTR 2-----------------------------------------------------------
+   VeStr   SrcFr   TarFr     Timeref  PixFmt PicAddr
+       N      -1      -1       94914  YUV420  0x8498a200
+       N      -1      -1       94914  YUV420  0x85a0ca00
+       N      -1      -1       94914  YUV420  0x84f90e00
+
+-----VENC CHN RECEIVE STAT-----------------------------------------------------
+      ID       Start     StartEx    RecvLeft     EncLeft
+       0           1           0           0           0
+       1           1           0           0           0
+       2           1           0           0           0
+
+-----VENC VPSS QUERY-----------------------------------------------------------
+      ID       Query     QueryOk     QueryFR       Invld        Full      VbFail   QueryFail     InfoErr        Stop
+       0           0           0           0           0           0           0           0           0           0
+       1           0           0           0           0           0           0           0           0           0
+       2           0           0           0           0           0           0           0           0           0
+
+-----VENC SEND1----------------------------------------------------------------
+      ID     VpssSnd     VInfErr     OthrSnd     OInfErr        Send        Stop        Full     CropErr    DrectSnd     SizeErr
+       0        5375           0           0           0        5375           0           0           0        5375           0
+       1       47458           0           0           0       47458           0           0           0       47458           0
+       2       47458           0           0           0       47458           0           0           0           0           0
+
+-----VENC SEND2----------------------------------------------------------------
+      ID     SendVgs     StartOk   StartFail       IntOk     IntFail      SrcAdd      SrcSub     DestAdd     DestSub
+       0           0           0           0           0           0           0           0           0           0
+       1           0           0           0           0           0           0           0           0           0
+       2       47458       47458           0       47458           0       47458       47458       47458           0
+
+-----VENC PIC QUEUE STATE------------------------------------------------------
+      ID    Free    Busy     Vgs
+       0       6       0       0
+       1       6       0       0
+       2       5       1       0
+
+-----VENC CHNL INFO------------------------------------------------------------
+      ID         Inq       InqOk       Start     StartOk      Config     VencInt  ChaResLost    OverLoad        Skip
+       0       18296        5375        5375        3225        3225        3225           0           0        2150
+       1      186547       47459       47459       28476       28476       28476           0           0       18983
+       2      189970       47457       47457        1908        1908        1908           0           0           0
+
+-----VENC CROP INFO------------------------------------------------------------
+      ID  CropEn  StartX  StartY   Width  Height
+       0       N       0       0       0       0
+       1       N       0       0       0       0
+       2       N       0       0       0       0
+
+-----ROI INFO------------------------------------------------------------------
+     ID     Index    bRoiEn    bAbsQp    Qp     Width    Height    StartX    StartY 
+
+
+-----VENC STREAM STATE---------------------------------------------------------
+      ID     FreeCnt     BusyCnt     UserCnt     UserGet     UserRls    GetTimes    Interval   FrameRate
+       0           1           0           0        3661        3661        3225       39977          15
+       1          31           0           0       31340       31340       28475       39987          15
+       2           5           0           0        3816        3816        1908     1000028           1
+/proc/umap #  
+/proc/umap # 
+/proc/umap # 
+/proc/umap # cat  rc
+
+[RC] Version: [Hi3516CV300_MPP_V1.0.1.1 B010 Release], Build Time[Apr  7 2017, 19:35:15]
+
+------BASE PARAMS 1------------------------------------------------------------
+  ChnId    Gop  StatTm  ViFr       TrgFr ProType  RcMode  Br(kbps)  FluLev  IQp  PQp  BQp 
+      0     30       2    25        15/0     265     VBR      2048     N/A  N/A  N/A  N/A
+      1     30       2    25        15/0      96     VBR      1024     N/A  N/A  N/A  N/A
+      2      1      60    25         1/0    1002   FIXQP       N/A     N/A   70   70   70
+
+------BASE PARAMS 2------------------------------------------------------------
+  ChnId   EnableIdr    bQpMapEn   QpMapMode bQpMapAbsQp 
+      0           Y           N      MEANQP         N/A
+      1           Y           N         N/A         N/A
+      2           Y         N/A         N/A         N/A
+
+-----RUN COMM PARAM 1----------------------------------------------------------
+  ChnId  RowQpDelta                       ThrdI(16)
+      0           2  [   0   0   0   0   3   3   5   5   8   8   8  15  20  20  25  25]
+      1           2  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      2           0  [   0   0   0   0   0   0   0   0 255 255 255 255 255 255 255 255]
+
+-----RUN COMM PARAM 2------------------------------------------------------------
+  ChnId  FirstFrmStartQP                  ThrdP(16)
+      0               -1  [   0   0   0   0   3   3   5   5   8   8   8  15  20  20  25  25]
+      1               -1  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      2               -1  [   0   0   0   0   0   0   0   0 255 255 255 255 255 255 255 255]
+
+-----RUN COMM PARAM 3----------------------------------------------------------
+  ChnId       PARAM                       ThrdB(16)
+      0     DEFAULT  [   0   0   0   0   3   3   5   5   8   8   8  15  20  20  25  25]
+      1     DEFAULT  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      2     DEFAULT  [   0   0   0   0   0   0   0   0 255 255 255 255 255 255 255 255]
+
+-----RUN COMM PARAM 4----------------------------------------------------------
+  ChnId                      LevelI(16)
+      0  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      1  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      2  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+
+-----RUN COMM PARAM 5----------------------------------------------------------
+  ChnId                      LevelP(16)
+      0  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      1  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      2  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+
+-----RUN COMM PARAM 6----------------------------------------------------------
+  ChnId                      LevelB(16)
+      0  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      1  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      2  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+
+-----RUN COMM PARAM 7----------------------------------------------------------
+  ChnId   bLost     LostThr  LostFrmStr    EncGap  RCPriority   SprFrmMod     SprIFrm     SprPFrm     SprBFrm
+      0       N    83886080      NORMAl         0     BITRATE        None      500000      500000      500000
+      1       N    83886080      NORMAl         0     BITRATE        None      500000      500000      500000
+      2       N    83886080      NORMAl         0     BITRATE        None      500000      500000      500000
+
+-----GOP MODE ATTR-------------------------------------------------------------
+  ChnId   GopMode IpQpDelta  SPInterval SPQpDelta   BFrmNum  BQpDelta  BgInterval ViQpDelta  BgOutput
+      0   NormalP         0         N/A       N/A       N/A       N/A         N/A       N/A       N/A
+      1   NormalP         0         N/A       N/A       N/A       N/A         N/A       N/A       N/A
+      2       N/A       N/A         N/A       N/A       N/A       N/A         N/A       N/A       N/A
+
+-----RUN CBR PARAM ------------------------------------------------------------
+  ChnId  MinIprop  MaxIprop   MaxQp   MinQp  MaxIQp  MinIQp  QLevel  MaxReEncTimes
+
+-----RUN VBR PARAM ------------------------------------------------------------
+  ChnId   ChgPs  MinIprop  MaxIprop   MaxQp   MinQp  MaxIQp  MinIQp  MaxReEncTimes  MaxStillQP  MinPercent   MinStillPSNR
+      0      90         1        20      42      24      42      24              2         N/A         N/A            N/A
+      1      90         1        20      42      24      42      24              2         N/A         N/A            N/A
+
+-----RUN INFO1-----------------------------------------------------------------
+  ChnId   InsBr(kbps)   InsFr    WatL   CfgBt(kb)  RealBt(kb)   IPRatio  TarPercent   StartQp   MinQp   MaxQp
+      0          1806      15    1966          93          89        10         N/A        24      24      42
+      1           174      15     121          37           8        44         N/A        24      24      42
+      2           487       1       0           0         494         0         N/A        70      70      70
+
+-----RC PERFORMANCE  INFO------------------------------------------------------
+  ChnId           StaOfstaTim          TotaOfstaTim           StaOfEndTim          TotaOfEndTim             TotalTime
+      0            1914580772                335586            1914524032                 66126                401712
+      1            1914580425               3705487            1914583446                567669               4273156
+      2            1914590425                653093            1914565031                 23998                677091
+/proc/umap # 
+/proc/umap # 
+
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+------BASE PARAMS 1------------------------------------------------------------
+  ChnId    Gop  StatTm  ViFr       TrgFr ProType  RcMode  Br(kbps)  FluLev  IQp  PQp  BQp 
+      0     30       2    25        15/0      96     VBR      3072     N/A  N/A  N/A  N/A
+      1     30       2    25        15/0      96     VBR      1024     N/A  N/A  N/A  N/A
+      2      1      60    25         1/0    1002   FIXQP       N/A     N/A   70   70   70
+
+
+-----RUN VBR PARAM ------------------------------------------------------------
+  ChnId   ChgPs  MinIprop  MaxIprop   MaxQp   MinQp  MaxIQp  MinIQp  MaxReEncTimes  MaxStillQP  MinPercent   MinStillPSNR
+      0      90         1        20      42      24      42      24              2         N/A         N/A            N/A
+      1      90         1        20      42      24      42      24              2         N/A         N/A            N/A
+
+-----RUN INFO1-----------------------------------------------------------------
+  ChnId   InsBr(kbps)   InsFr    WatL   CfgBt(kb)  RealBt(kb)   IPRatio  TarPercent   StartQp   MinQp   MaxQp
+      0           210      15       0         136          10        11         N/A        24      24      42
+      1            29      15       0          37           1        27         N/A        24      24      42
+      2           170       1       0           0         154         0         N/A        70      70      70
+
+
+
+
+-----VENC CHN ATTR 1-----------------------------------------------------------
+      ID   Width  Height  Type  ByFrame    Sequence   LeftBytes     LeftFrm  CurPacks   GopMode  Prio
+       0    1920    1080    96        Y      912826           0           0         1   NormalP     0
+       1     640     480    96        Y      912756           0           0         1   NormalP     0
+       2    1280     720  1002        Y       60858           0           0         2   NormalP     0
+
+
+-----VENC STREAM STATE---------------------------------------------------------
+      ID     FreeCnt     BusyCnt     UserCnt     UserGet     UserRls    GetTimes    Interval   FrameRate
+       0          51           0           0     1004251     1004251      912826       80026          15
+       1          31           0           0     1004208     1004208      912756       80220          15
+       2           5           0           0      121716      121716       60858     1010052           1
+
+
+
+主码流   1080p    3072b/s  264   VBR   15FPS   GOP30
+次码流   640X480  1024b/s  264   VBR   15FPS   GOP30
+点播主码流
+【翰晖3516cv300】
+完全静止场景：平均1700～2061  当前
+手晃动：      平均2761～2982  当前
+
+
+用手遮：      平均2992～3289  当前2645～4239    用手遮着，平均码率只有585~703Kb/s左右， 当前码率419～812，但一点点运动都可以让当前码率立马上升到1600，3400，3800
+
+码率稳定下去的快3000下一刻到297k，一不动就码率下去，上升也快，从600k下一刻就到3300多k，4104k，一微小运动顺时码率上来。当前码率波动剧烈，从200k到4300k，瞬间跳跃。有运动，码率马上跟上。换句话说关注运动，抛弃静止。
+
+
+
+
+
+
+u32MinQp、u32MinIQp：对最小 QP 进行限制。希望在图像静止或小运动的时候节省码率，CBR 建议设置为[10,20]；VBR 建议设置为[24,32]
+
+增大最小QP来降低码率
+
+
+
+
+【之前】u32MinQp=24、u32MinIQp=24
+小范围运动：  平均2909～3046  当前2591～3286    主startqp 37~39,偶尔31，次startqp 37~40,偶尔41，32
+手晃动：      平均2943～3097  当前2292～3495    主startqp 33~,偶尔31，次startqp 37~40,偶尔41，32
+用手遮：      平均2872～3136  当前2579～3310    主startqp 33~40,次startqp 31~40，遮住时qp变大，发生变化时qp变大，码率冲高一下，引起qp变大，保持不变时qp变下，用手遮着，码率只有1.4Mb/s左右，qp此时已是最小24，场景简单，
+                                                一放开手，马上又回到3Mb/S多，主qp拉升到34左右，次qp在24～30间跳
+
+
+主码流3072
+次码流512
+点播主码流
+【调整后】u32MinQp=32、u32MinIQp=32
+小范围运动：  平均965～1113  当前730～1423    主startqp 一直32，次startqp 一直32
+手晃动：      平均2871～3064  当前2607～3167    主startqp 32~37，次startqp 32
+用手遮：      平均2597～3032  当前2354～4067    主startqp 40,次startqp 41，遮住时qp变大，发生变化时qp变大，码率冲高一下，引起qp变大，保持不变时qp变下，用手遮着，平均码率只有366Kb/s左右， 当前码率326～404，qp此时已是最小32，场景简单，
+
+
+
+主码流3000BPS 264 1080p VBR 16FPS GOP32
+次码流500BPS 264 640X360 VBR 16FPS GOP32
+点播主码流
+【天视通】
+完全静止场景：平均602～722  当前385～952
+小范围运动：  平均1069～1356 2354～3086  当前 907～3847
+手晃动：      平均3039～3218  当前2853～3457
+用手遮：      平均2992～3289  当前2645～4239    用手遮着，平均码率只有585~703Kb/s左右， 当前码率419～812，但一点点运动都可以让当前码率立马上升到1600，3400，3800
+
+码率稳定下去的快3000下一刻到297k，一不动就码率下去，上升也快，从600k下一刻就到3300多k，4104k，一微小运动顺时码率上来。当前码率波动剧烈，从200k到4300k，瞬间跳跃。有运动，码率马上跟上。换句话说关注运动，抛弃静止。
+
+
+
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+代码实际改哪几处
+1、mw_enc_api.c中修改全局变量值minqp_array[5] = 			{32, 28, 32, 20, 16 }//wigewige modify to reduce bitrate at motionle
+2、sample_comm_venc.c中增加调用HI_MPI_VENC_SetIntraRefresh接口
+3、为适配3518ev200 8MB flash，hank_sys.h中关掉ULU等一些宏
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+
+u32MinQp、u32MinIQp：对最小 QP 进行限制。希望在图像静止或小运动的时候节省码率，CBR 建议设置为[10,20]；VBR 建议设置为[24,32]
+
+增大最小QP来降低码率
+
+
+
+
+【之前】u32MinQp=24、u32MinIQp=24
+小范围运动：  平均2909～3046  当前2591～3286    主startqp 37~39,偶尔31，次startqp 37~40,偶尔41，32
+手晃动：      平均2943～3097  当前2292～3495    主startqp 33~,偶尔31，次startqp 37~40,偶尔41，32
+用手遮：      平均2872～3136  当前2579～3310    主startqp 33~40,次startqp 31~40，遮住时qp变大，发生变化时qp变大，码率冲高一下，引起qp变大，保持不变时qp变下，用手遮着，码率只有1.4Mb/s左右，qp此时已是最小24，场景简单，
+                                                一放开手，马上又回到3Mb/S多，主qp拉升到34左右，次qp在24～30间跳
+
+
+主码流3072
+次码流512
+点播主码流
+【调整后】u32MinQp=32、u32MinIQp=32
+小范围运动：  平均965～1113  当前730～1423    主startqp 一直32，次startqp 一直32
+手晃动：      平均2871～3064  当前2607～3167    主startqp 32~37，次startqp 32
+用手遮：      平均2597～3032  当前2354～4067    主startqp 40,次startqp 41，遮住时qp变大，发生变化时qp变大，码率冲高一下，引起qp变大，保持不变时qp变下，用手遮着，平均码率只有366Kb/s左右， 当前码率326～404，qp此时已是最小32，场景简单，
+
+
+
+主码流3000BPS 264 1080p VBR 16FPS GOP32
+次码流500BPS 264 640X360 VBR 16FPS GOP32
+点播主码流
+【天视通】
+完全静止场景：平均602～722  当前385～952
+小范围运动：  平均1069～1356 2354～3086  当前 907～3847
+手晃动：      平均3039～3218  当前2853～3457
+用手遮：      平均2992～3289  当前2645～4239    用手遮着，平均码率只有585~703Kb/s左右， 当前码率419～812，但一点点运动都可以让当前码率立马上升到1600，3400，3800
+
+码率稳定下去的快3000下一刻到297k，一不动就码率下去，上升也快，从600k下一刻就到3300多k，4104k，一微小运动顺时码率上来。当前码率波动剧烈，从200k到4300k，瞬间跳跃。有运动，码率马上跟上。换句话说关注运动，抛弃静止。
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+
+背景帧倒像是I帧。原来的I帧通过参考背景帧来编码、继而传出去，采用了帧间预测，原来的I帧倒像是P帧了，
+
+
+对于运动少或偶尔一定时间内出现运动物体，264+可以节省50%以上的存储和带宽，代价是更多用于智能算法的CPU计算和控制内存消耗，但是划的来的，图像质量也与264相当。
+但当监控场景中一直有运动的物体时，使用264+，即背景法，则节省不了存储和带宽，这就得不偿失了，算法做了，CPU也消耗了，但没带来存储和带宽的节省。但监控场景下24小时一直有运动物体，实际中这是很少见的。
+
+
+
+
+分出图像中的背景部分（大楼马路）和运动部分（车辆行人）后，可以采用分别对待的策略。对背景可以压缩高一些，降低码流码率，还可以抑制噪声
+
+
+264+省出来的就是背景部分，背景部分的编码压缩和还原解压
+运动部分其实省不下来，还是靠264
+有了背景帧做参考，编码时就不需要传整块背景区域的宏块，只需直接指定用那个区域的背景宏块，或指定用那个区块的背景宏块以及对比后的一点差异difference即可，传，即可完整表达当前这帧图像。
+解压时，有了背景帧做参考帧，也可以很容易的从当前背景宏块和一点差异残差中复原出整幅图像。
+
+监控因为其背景不变的特点，所以引入了背景帧的提法，而且确实实用有效
+因为图像中有更多的地方可以从更多的参考帧宏块中相似的地方获取，所以可以传更小数据量的差异部分，视频可以压缩的更小
+所谓背景法，就是发明出增加一帧背景图像作为参考帧，作为在做时域预测时，结合前一或参考帧和背景帧这两部分，一起来编出当前帧。当前帧很多需要的块都可以从参考帧中获取，或者只需要增加很少的差异部分
+当前帧中属于背景部分的很多需要的块都可以从背景帧中获取，或者只需要增加很少的差异部分
+
+264+的核心就是监控视频的背景部分可以省出码率，保证移动部分即可。
+把背景部分再想方设法在264压缩基础上再压缩一下。
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+调用HI_MPI_VENC_SetIntraRefresh，码率平滑接口
+HI_MPI_VENC_SetIntraRefresh
+mw_enc_api.c
+
+
+跳帧参考
+HI_MPI_VENC_SetRefParam
+
+
+【之前】
+晃动镜头，波动不大，范围  平均2900～3155  当前2300～3500
+用手遮，波动大，范围  平均2400～3100  当前1400～3500
+
+
+
+【增加平滑接口HI_MPI_VENC_SetIntraRefresh后】
+IQP=24,LINE=3
+几乎静止                  平均3008～3100  当前2904～3207
+晃动镜头，波动不大，范围  平均2973～3136  当前2742～3192
+用手遮，波动大，范围      平均2677～3047  当前1517～3311
+
+
+IQP=24,LINE=18
+几乎静止 3000～3100
+晃动镜头，波动不大，范围  平均2920～3145  当前2761～3220
+用手遮，波动大，范围  平均2604～3251  当前1966～4293
+
+
+
+
+3072    1920x1080
+512     640x480
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+码流平滑
+P 帧帧内刷新
+P 帧刷新 ISlice/Intra 宏块行，可以为客户提供码流非常平滑的编码方式，每个 I 帧和 P
+帧的大小可以非常接近。在网络带宽有限（如无线网络）的情况下，降低 I 帧过大带
+来的网络冲击，降低网传延时，降低网络传输出错的概率。
+
+HI_MPI_VENC_SetIntraRefresh
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+确认为什么VBR静止时码率还降不下
+
+
+
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+
+我们跟天视通的对比
+相同：运动时，码率波动差不多
+不同，静止时，我们仍维持在3M左右码率，天视通则降到600k左右。打打降低了存储消耗和带宽占用。
+
+
+把参考帧中的不动部分和运动部分分离出来、提取出来，这是核心思想
+把当前图像帧中的不动部分与背景图像帧中的不动部分比，运动部分与运动部分比差，传递这两部分差异即可。
+而且背景帧中这两部分可以长期使用，尤其背景帧中的不动部分。
+同时，背景帧也跟着被更新。
+由于监控背景经常不动，那不动部分可以长期不需要每次分配大批bit，降低了数据产生。
+
+智能分析算法可以提取背景图像和运动对象
+
+
+
+当前图像帧中谁是运动部分，谁是静止部分，依靠智能分析，就像人分析一样，通过人分析那是运动，那时静止，学习，深度学习，自我学习。
+
+智能，即学习，一段时间学习。
+
+不动部分作为长期使用和更新
+
+
+运动部分多分配码率
+静止部分少分配bit
+
+基于、依靠智能分析，谁是运动部分、谁是静止部分
+
+

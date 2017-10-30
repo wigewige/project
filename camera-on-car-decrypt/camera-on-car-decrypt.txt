@@ -1,6 +1,360 @@
 
 
 
+代码修改
+新增ODScopeInfo   rootfs_hi3516cv300\Compress\Default_Configs
+
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+IE上没勾选移动侦测，默认开机移动侦测也会监测到，和上报到报警服务器
+
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+连续上报报警状态是正常的，直到停止stop    
+有一个时间可选，来实现只上报一次警   bCenterlooptime
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+tcp        0      0 10.0.39.245:49078       10.0.39.241:90          TIME_WAIT
+超时问题TIME_WAIT
+50s
+差不多60s一分钟
+
+
+wigewige-linux@ubuntu:~/share/develop/project/samsung/APP$ netstat | head -n 10 | grep 10.0.39.241
+tcp        0      0 10.0.39.245:nfs         10.0.39.241:691         ESTABLISHED
+tcp        0      0 10.0.39.245:49084       10.0.39.241:90          TIME_WAIT  
+wigewige-linux@ubuntu:~/share/develop/project/samsung/APP$ 
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+增加遮挡报警
+
+obstruct
+代码
+makefile等编译文件
+main等相关部分代码
+
+
+搜索关键词
+obstruct Shelter
+
+
+待修改
+int  AlmSrcRegId_Shelter_Onvif[CHANNEL_NUM][MOTION_IN_NUM];	/*justin add for samsung*/   MOTION_IN_NUM  VIDEO_COVER_NUM
+
+
+void *getGlobalVideoInfoAddr(VIDEO_CONFIG_EM flag)
+
+md_scope_set
+
+
+到这里
+./API/hank_api/hank_event_API.c:69:		Responseptr-
+
+
+TH_ProcessAlarm
+处理报警
+HANK_LoopAlarm_FUN   AI_LOOP
+
+循环报警，直到超时才停止
+
+SetAlarm_looptime_API( AC_Local, i, 0, AO_Center, 1000 );
+
+
+对应  开始开始开始。。。停止
+10s时长，开始间间隔1s 1000  
+__
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 0
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 3
+alarmInfo->nAlarmID = 1
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 0
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 3
+alarmInfo->nAlarmID = 1
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 0
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 3
+alarmInfo->nAlarmID = 1
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 0
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 3
+alarmInfo->nAlarmID = 1
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 0
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 3
+alarmInfo->nAlarmID = 1
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 0
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 3
+alarmInfo->nAlarmID = 1
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 0
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 3
+alarmInfo->nAlarmID = 1
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 0
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 3
+alarmInfo->nAlarmID = 1
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 0
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 3
+alarmInfo->nAlarmID = 1
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 0
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 3
+alarmInfo->nAlarmID = 1
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 3
+alarmInfo->nAlarmID = 1
+alarmInfo->cAlarmStatus = 0
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 0
+alarmInfo->cAlarmStatus = 0
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 2
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 2
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 2
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 2
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 2
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 2
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 2
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 2
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 2
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 2
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 2
+alarmInfo->cAlarmStatus = 0
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 0
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+
+
+
+
+SetAlarm_looptime_API( AC_Local, i, 0, AO_Center, 0 );
+对应  开始停止
+10s时长，开始与停止间隔10s
+
+
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 5
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 3
+alarmInfo->nAlarmID = 6
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+
+_main__get char 
+__
+
+_main__get char 
+__
+alarmInfo->eAlarmType = 3
+alarmInfo->nAlarmID = 6
+alarmInfo->cAlarmStatus = 0
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 5
+alarmInfo->cAlarmStatus = 0
+alarmInfo->cAlarmArea = 1
+
+_main__get char 
+
+
+_main__get char 
+__
+alarmInfo->eAlarmType = 3
+alarmInfo->nAlarmID = 7
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 8
+alarmInfo->cAlarmStatus = 1
+alarmInfo->cAlarmArea = 1
+
+_main__get char 
+__
+
+_main__get char 
+__
+alarmInfo->eAlarmType = 3
+alarmInfo->nAlarmID = 7
+alarmInfo->cAlarmStatus = 0
+alarmInfo->cAlarmArea = 1
+alarmInfo->eAlarmType = 2
+alarmInfo->nAlarmID = 8
+alarmInfo->cAlarmStatus = 0
+alarmInfo->cAlarmArea = 1
+
+
+
+
+     
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+
+加后端时间控制功能
+设置系统时间
+默认关闭OSD时间显示
+控制OSD时间显示和关闭
+
+1 IPC端关闭OSD时间显示
+2 OSD接口中新增OSD时间开关控制成员，同时新增OSD字符显示开关控制成员，以便两者都能单独独立控制。只设OSD的时候可以只设OSD，只设置时间OSD的时候只设置时间OSD.都传，IPC端发现如果无效，直接returen 不传下去就行。
+3 新增系统时间设置接口
+
+
+
+
+
+OsdInfo——时间默认关闭
+规避开始显示2013问题
+ 
+  92 SERVER_PATH=${ROOTFS_PATH}/Compress/Server
+
+ 494 
+ 495 ###############init ROOTFS_PATH and default configs#################
+ 496 rm -f ${SERVER_PATH}/databak/*
+ 497 rm -f ${ROOTFS_PATH}/flash/data/*
+ 498 rm -f ${ROOTFS_PATH}/flash/databak/*
+ 499 cd ${ROOTFS_PATH}/Compress/Default_Configs
+ 500 cp * ${SERVER_PATH}/databak/
+ 
+auto.sh
+
+Y:\share\develop\project\secure-osd-display-camera-on-car\rootfs_hi3516cv300\Compress\Default_Configs
+
+		system("cp /mnt/flash/Server/databak/* /mnt/flash/databak");
+		memset(&factory_cfg,0,sizeof(update_factory));
+		update_factory_check(&factory_cfg);
+		printf("%s,%d,factory_cfg.mode=%d\n",__FUNCTION__,__LINE__,factory_cfg.mode);
+		if(factory_cfg.mode == 0){
+			printf("%s,%d\n",__FUNCTION__,__LINE__);
+			system("cp /mnt/flash/Server/databak/* /mnt/flash/data");
+
+
+
+
+
+
+
+
+5个文字部分分别占用5个region area区域  0-4
+	for(i=0;i<OSD_TEXT_COUNT;i++){
+		memset(&osd,0,sizeof(ENC_OSD_ST));
+		memset(&head,0,sizeof(pkghead));
+		osd.area = i;
+
+
+时间OSD占用第6个region area区域5
+	osd.area = OSD_TEXT_COUNT;
+	osd.chn = 0;//default
+	osd.enable = ptr->time_info.enable;
+	osd.startx = ptr->time_info.time_x;
+	osd.starty = ptr->time_info.time_y;
+	osd.mode = ENC_OSDTYPE_TIME;
+  
+倍数占用第7个area区域6
+	osd.area = OSD_TEXT_COUNT+1;
+	osd.chn = 0;//default
+	osd.enable = ptr->multiple_info.enable;
+	osd.startx = ptr->multiple_info.multiple_x;
+	osd.starty = ptr->multiple_info.multiple_y;
+	osd.mode = ENC_OSDTYPE_MULT;
+
+
+
 
 
 ——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————

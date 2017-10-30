@@ -1,0 +1,345 @@
+
+
+
+
+                       
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+264
+
+
+/proc/umap # 
+/proc/umap # 
+/proc/umap # cat venc 
+
+[VENC] Version: [Hi3516CV300_MPP_V1.0.1.1 B010 Release], Build Time[Apr  7 2017, 19:35:09]
+
+-----MODULE PARAM--------------------------------------------------------------
+    VencBufferCache   FrameBufRecycle
+                  0                 0
+
+-----VENC CHN ATTR 1-----------------------------------------------------------
+      ID   Width  Height  Type  ByFrame    Sequence   LeftBytes     LeftFrm  CurPacks   GopMode  Prio
+       0    1920    1080    96        Y         521           0           0         1   NormalP     0
+       1     640     480    96        Y       68245           0           0         1   NormalP     0
+       2    1280     720  1002        Y        4560           0           0         2   NormalP     0
+
+-----VENC CHN ATTR 2-----------------------------------------------------------
+   VeStr   SrcFr   TarFr     Timeref  PixFmt PicAddr
+       Y      -1      -1      227480  YUV420  0x85597a00
+       N      -1      -1      227480  YUV420  0x85a87800
+       N      -1      -1      227480  YUV420  0x8498a200
+
+-----VENC CHN RECEIVE STAT-----------------------------------------------------
+      ID       Start     StartEx    RecvLeft     EncLeft
+       0           1           0           0           0
+       1           1           0           0           0
+       2           1           0           0           0
+
+-----VENC VPSS QUERY-----------------------------------------------------------
+      ID       Query     QueryOk     QueryFR       Invld        Full      VbFail   QueryFail     InfoErr        Stop
+       0           0           0           0           0           0           0           0           0           0
+       1           0           0           0           0           0           0           0           0           0
+       2           0           0           0           0           0           0           0           0           0
+
+-----VENC SEND1----------------------------------------------------------------
+      ID     VpssSnd     VInfErr     OthrSnd     OInfErr        Send        Stop        Full     CropErr    DrectSnd     SizeErr
+       0         867           0           0           0         867           0           0           0         867           0
+       1      113741           0           0           0      113741           0           0           0      113741           0
+       2      113741           0           0           0      113741           0           0           0           0           0
+
+-----VENC SEND2----------------------------------------------------------------
+      ID     SendVgs     StartOk   StartFail       IntOk     IntFail      SrcAdd      SrcSub     DestAdd     DestSub
+       0           0           0           0           0           0           0           0           0           0
+       1           0           0           0           0           0           0           0           0           0
+       2      113741      113741           0      113741           0      113741      113741      113741           0
+
+-----VENC PIC QUEUE STATE------------------------------------------------------
+      ID    Free    Busy     Vgs
+       0       6       0       0
+       1       6       0       0
+       2       6       0       0
+
+-----VENC CHNL INFO------------------------------------------------------------
+      ID         Inq       InqOk       Start     StartOk      Config     VencInt  ChaResLost    OverLoad        Skip
+       0        3646         867         867         521         521         521           0           0         346
+       1      447146      113742      113742       68246       68246       68246           0           0       45496
+       2      455299      113741      113741        4560        4560        4560           0           0           0
+
+-----VENC CROP INFO------------------------------------------------------------
+      ID  CropEn  StartX  StartY   Width  Height
+       0       N       0       0       0       0
+       1       N       0       0       0       0
+       2       N       0       0       0       0
+
+-----ROI INFO------------------------------------------------------------------
+     ID     Index    bRoiEn    bAbsQp    Qp     Width    Height    StartX    StartY 
+
+
+-----VENC STREAM STATE---------------------------------------------------------
+      ID     FreeCnt     BusyCnt     UserCnt     UserGet     UserRls    GetTimes    Interval   FrameRate
+       0           1           0           0         575         575         522       77512          15
+       1          31           0           0       75085       75085       68245       39942          15
+       2           5           0           0        9120        9120        4560      999978           1
+/proc/umap # 
+
+
+
+/proc/umap # cat rc 
+
+[RC] Version: [Hi3516CV300_MPP_V1.0.1.1 B010 Release], Build Time[Apr  7 2017, 19:35:15]
+
+------BASE PARAMS 1------------------------------------------------------------
+  ChnId    Gop  StatTm  ViFr       TrgFr ProType  RcMode  Br(kbps)  FluLev  IQp  PQp  BQp 
+      0     30       2    25        15/0      96     VBR      3072     N/A  N/A  N/A  N/A
+      1     30       2    25        15/0      96     VBR      1024     N/A  N/A  N/A  N/A
+      2      1      60    25         1/0    1002   FIXQP       N/A     N/A   70   70   70
+
+------BASE PARAMS 2------------------------------------------------------------
+  ChnId   EnableIdr    bQpMapEn   QpMapMode bQpMapAbsQp 
+      0           Y           N         N/A         N/A
+      1           Y           N         N/A         N/A
+      2           Y         N/A         N/A         N/A
+
+-----RUN COMM PARAM 1----------------------------------------------------------
+  ChnId  RowQpDelta                       ThrdI(16)
+      0           2  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      1           2  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      2           0  [   0   0   0   0   0   0   0   0 255 255 255 255 255 255 255 255]
+
+-----RUN COMM PARAM 2------------------------------------------------------------
+  ChnId  FirstFrmStartQP                  ThrdP(16)
+      0               -1  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      1               -1  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      2               -1  [   0   0   0   0   0   0   0   0 255 255 255 255 255 255 255 255]
+
+-----RUN COMM PARAM 3----------------------------------------------------------
+  ChnId       PARAM                       ThrdB(16)
+      0     DEFAULT  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      1     DEFAULT  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      2     DEFAULT  [   0   0   0   0   0   0   0   0 255 255 255 255 255 255 255 255]
+
+-----RUN COMM PARAM 4----------------------------------------------------------
+  ChnId                      LevelI(16)
+      0  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      1  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      2  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+
+-----RUN COMM PARAM 5----------------------------------------------------------
+  ChnId                      LevelP(16)
+      0  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      1  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      2  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+
+-----RUN COMM PARAM 6----------------------------------------------------------
+  ChnId                      LevelB(16)
+      0  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      1  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      2  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+
+-----RUN COMM PARAM 7----------------------------------------------------------
+  ChnId   bLost     LostThr  LostFrmStr    EncGap  RCPriority   SprFrmMod     SprIFrm     SprPFrm     SprBFrm
+      0       N    83886080      NORMAl         0     BITRATE        None      500000      500000      500000
+      1       N    83886080      NORMAl         0     BITRATE        None      500000      500000      500000
+      2       N    83886080      NORMAl         0     BITRATE        None      500000      500000      500000
+
+-----GOP MODE ATTR-------------------------------------------------------------
+  ChnId   GopMode IpQpDelta  SPInterval SPQpDelta   BFrmNum  BQpDelta  BgInterval ViQpDelta  BgOutput
+      0   NormalP         0         N/A       N/A       N/A       N/A         N/A       N/A       N/A
+      1   NormalP         0         N/A       N/A       N/A       N/A         N/A       N/A       N/A
+      2       N/A       N/A         N/A       N/A       N/A       N/A         N/A       N/A       N/A
+
+-----RUN CBR PARAM ------------------------------------------------------------
+  ChnId  MinIprop  MaxIprop   MaxQp   MinQp  MaxIQp  MinIQp  QLevel  MaxReEncTimes
+
+-----RUN VBR PARAM ------------------------------------------------------------
+  ChnId   ChgPs  MinIprop  MaxIprop   MaxQp   MinQp  MaxIQp  MinIQp  MaxReEncTimes  MaxStillQP  MinPercent   MinStillPSNR
+      0      90         1        20      42      24      42      24              2         N/A         N/A            N/A
+      1      90         1        20      42      24      42      24              2         N/A         N/A            N/A
+
+-----RUN INFO1-----------------------------------------------------------------
+  ChnId   InsBr(kbps)   InsFr    WatL   CfgBt(kb)  RealBt(kb)   IPRatio  TarPercent   StartQp   MinQp   MaxQp
+      0           210      15       0         136          10        11         N/A        24      24      42
+      1            29      15       0          37           1        27         N/A        24      24      42
+      2           170       1       0           0         154         0         N/A        70      70      70
+
+-----RC PERFORMANCE  INFO------------------------------------------------------
+  ChnId           StaOfstaTim          TotaOfstaTim           StaOfEndTim          TotaOfEndTim             TotalTime
+      0           72842610327             121682172           72842587809              17881802             139563974
+      1           72842610390             121556149           72842590453              19279525             140835674
+      2           72842580317              21141210           72841715006                773203              21914413
+/proc/umap # 
+
+
+
+
+——————————————————————————————————————————————————————————————分割线————————————————————————————————————————————————————————————————————
+
+265
+
+
+/proc/umap # 
+/proc/umap # cat venc 
+
+[VENC] Version: [Hi3516CV300_MPP_V1.0.1.1 B010 Release], Build Time[Apr  7 2017, 19:35:09]
+
+-----MODULE PARAM--------------------------------------------------------------
+    VencBufferCache   FrameBufRecycle
+                  0                 0
+
+-----VENC CHN ATTR 1-----------------------------------------------------------
+      ID   Width  Height  Type  ByFrame    Sequence   LeftBytes     LeftFrm  CurPacks   GopMode  Prio
+       0    1920    1080   265        Y         630           0           0         1   NormalP     0
+       1     640     480    96        Y       66720           0           0         1   NormalP     0
+       2    1280     720  1002        Y        4458           0           0         2   NormalP     0
+
+-----VENC CHN ATTR 2-----------------------------------------------------------
+   VeStr   SrcFr   TarFr     Timeref  PixFmt PicAddr
+       N      -1      -1      222396  YUV420  0x85294400
+       Y      -1      -1      222396  YUV420  0x8589c000
+       N      -1      -1      222396  YUV420  0x84686c00
+
+-----VENC CHN RECEIVE STAT-----------------------------------------------------
+      ID       Start     StartEx    RecvLeft     EncLeft
+       0           1           0           0           0
+       1           1           0           0           0
+       2           1           0           0           0
+
+-----VENC VPSS QUERY-----------------------------------------------------------
+      ID       Query     QueryOk     QueryFR       Invld        Full      VbFail   QueryFail     InfoErr        Stop
+       0           0           0           0           0           0           0           0           0           0
+       1           0           0           0           0           0           0           0           0           0
+       2           0           0           0           0           0           0           0           0           0
+
+-----VENC SEND1----------------------------------------------------------------
+      ID     VpssSnd     VInfErr     OthrSnd     OInfErr        Send        Stop        Full     CropErr    DrectSnd     SizeErr
+       0        1050           0           0           0        1050           0           0           0        1050           0
+       1      111199           0           0           0      111199           0           0           0      111199           0
+       2      111199           0           0           0      111199           0           0           0           0           0
+
+-----VENC SEND2----------------------------------------------------------------
+      ID     SendVgs     StartOk   StartFail       IntOk     IntFail      SrcAdd      SrcSub     DestAdd     DestSub
+       0           0           0           0           0           0           0           0           0           0
+       1           0           0           0           0           0           0           0           0           0
+       2      111199      111199           0      111199           0      111199      111199      111199           0
+
+-----VENC PIC QUEUE STATE------------------------------------------------------
+      ID    Free    Busy     Vgs
+       0       6       0       0
+       1       6       0       0
+       2       6       0       0
+
+-----VENC CHNL INFO------------------------------------------------------------
+      ID         Inq       InqOk       Start     StartOk      Config     VencInt  ChaResLost    OverLoad        Skip
+       0        4205        1050        1050         630         630         630           0           0         420
+       1      437307      111200      111200       66721       66721       66721           0           0       44479
+       2      445124      111199      111199        4458        4458        4458           0           0           0
+
+-----VENC CROP INFO------------------------------------------------------------
+      ID  CropEn  StartX  StartY   Width  Height
+       0       N       0       0       0       0
+       1       N       0       0       0       0
+       2       N       0       0       0       0
+
+-----ROI INFO------------------------------------------------------------------
+     ID     Index    bRoiEn    bAbsQp    Qp     Width    Height    StartX    StartY 
+
+
+-----VENC STREAM STATE---------------------------------------------------------
+      ID     FreeCnt     BusyCnt     UserCnt     UserGet     UserRls    GetTimes    Interval   FrameRate
+       0           1           0           0         718         718         630       39951          15
+       1          31           0           0       73407       73407       66720       59098          15
+       2           5           0           0        8916        8916        4458      999127           1
+/proc/umap # 
+/proc/umap # 
+/proc/umap # 
+
+
+/proc/umap # cat rc 
+
+[RC] Version: [Hi3516CV300_MPP_V1.0.1.1 B010 Release], Build Time[Apr  7 2017, 19:35:15]
+
+------BASE PARAMS 1------------------------------------------------------------
+  ChnId    Gop  StatTm  ViFr       TrgFr ProType  RcMode  Br(kbps)  FluLev  IQp  PQp  BQp 
+      0     30       2    25        15/0     265     VBR      2048     N/A  N/A  N/A  N/A
+      1     30       2    25        15/0      96     VBR      1024     N/A  N/A  N/A  N/A
+      2      1      60    25         1/0    1002   FIXQP       N/A     N/A   70   70   70
+
+------BASE PARAMS 2------------------------------------------------------------
+  ChnId   EnableIdr    bQpMapEn   QpMapMode bQpMapAbsQp 
+      0           Y           N      MEANQP         N/A
+      1           Y           N         N/A         N/A
+      2           Y         N/A         N/A         N/A
+
+-----RUN COMM PARAM 1----------------------------------------------------------
+  ChnId  RowQpDelta                       ThrdI(16)
+      0           2  [   0   0   0   0   3   3   5   5   8   8   8  15  20  20  25  25]
+      1           2  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      2           0  [   0   0   0   0   0   0   0   0 255 255 255 255 255 255 255 255]
+
+-----RUN COMM PARAM 2------------------------------------------------------------
+  ChnId  FirstFrmStartQP                  ThrdP(16)
+      0               -1  [   0   0   0   0   3   3   5   5   8   8   8  15  20  20  25  25]
+      1               -1  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      2               -1  [   0   0   0   0   0   0   0   0 255 255 255 255 255 255 255 255]
+
+-----RUN COMM PARAM 3----------------------------------------------------------
+  ChnId       PARAM                       ThrdB(16)
+      0     DEFAULT  [   0   0   0   0   3   3   5   5   8   8   8  15  20  20  25  25]
+      1     DEFAULT  [   0   0   0   0   3   3   5   5   8   8   8  15  15  20  25  25]
+      2     DEFAULT  [   0   0   0   0   0   0   0   0 255 255 255 255 255 255 255 255]
+
+-----RUN COMM PARAM 4----------------------------------------------------------
+  ChnId                      LevelI(16)
+      0  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      1  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      2  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+
+-----RUN COMM PARAM 5----------------------------------------------------------
+  ChnId                      LevelP(16)
+      0  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      1  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      2  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+
+-----RUN COMM PARAM 6----------------------------------------------------------
+  ChnId                      LevelB(16)
+      0  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      1  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+      2  [   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1]
+
+-----RUN COMM PARAM 7----------------------------------------------------------
+  ChnId   bLost     LostThr  LostFrmStr    EncGap  RCPriority   SprFrmMod     SprIFrm     SprPFrm     SprBFrm
+      0       N    83886080      NORMAl         0     BITRATE        None      500000      500000      500000
+      1       N    83886080      NORMAl         0     BITRATE        None      500000      500000      500000
+      2       N    83886080      NORMAl         0     BITRATE        None      500000      500000      500000
+
+-----GOP MODE ATTR-------------------------------------------------------------
+  ChnId   GopMode IpQpDelta  SPInterval SPQpDelta   BFrmNum  BQpDelta  BgInterval ViQpDelta  BgOutput
+      0   NormalP         0         N/A       N/A       N/A       N/A         N/A       N/A       N/A
+      1   NormalP         0         N/A       N/A       N/A       N/A         N/A       N/A       N/A
+      2       N/A       N/A         N/A       N/A       N/A       N/A         N/A       N/A       N/A
+
+-----RUN CBR PARAM ------------------------------------------------------------
+  ChnId  MinIprop  MaxIprop   MaxQp   MinQp  MaxIQp  MinIQp  QLevel  MaxReEncTimes
+
+-----RUN VBR PARAM ------------------------------------------------------------
+  ChnId   ChgPs  MinIprop  MaxIprop   MaxQp   MinQp  MaxIQp  MinIQp  MaxReEncTimes  MaxStillQP  MinPercent   MinStillPSNR
+      0      90         1        20      42      24      42      24              2         N/A         N/A            N/A
+      1      90         1        20      42      24      42      24              2         N/A         N/A            N/A
+
+-----RUN INFO1-----------------------------------------------------------------
+  ChnId   InsBr(kbps)   InsFr    WatL   CfgBt(kb)  RealBt(kb)   IPRatio  TarPercent   StartQp   MinQp   MaxQp
+      0          1770      15    1966         626         578         5         N/A        25      24      42
+      1           221      15       5          44          26        12         N/A        24      24      42
+      2           340       1       0           0         349         0         N/A        70      70      70
+
+-----RC PERFORMANCE  INFO------------------------------------------------------
+  ChnId           StaOfstaTim          TotaOfstaTim           StaOfEndTim          TotaOfEndTim             TotalTime
+      0            4494850683                120715            4494829353                 22592                143307
+      1            4494850359               8694514            4494853343               1367533              10062047
+      2            4494860252               1557775            4494715112                 55918               1613693
+/proc/umap # 
+
+
